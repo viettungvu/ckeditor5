@@ -50,13 +50,14 @@ function createEditor(editorId, type = TypeOfCk.CAU_HOI, placehoder = '', data =
                     type: 'inline'
                 }
             },
-            // list: {
-            //     properties: {
-            //         styles: true,
-            //         startIndex: true,
-            //         reversed: true
-            //     }
-            // }
+            ckfinder: {
+                // Open the file manager in the pop-up window.
+                openerMethod: 'popup',
+                options: {
+                    resourceType: 'Images'
+                },
+                uploadUrl: '/ckfinder/userfiles?command=QuickUpload&type=Files&responseType=json'
+            }
         })
         .then(editor => {
             editors.set(editorId, editor);

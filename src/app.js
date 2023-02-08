@@ -24,6 +24,9 @@ import Control from '../plugins/control_plugin/control';
 import Math from '../plugins/math_plugin/math';
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 //import Placeholder from '../plugins/demo_plugin/demo'
+import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
+import Link from '@ckeditor/ckeditor5-link/src/link.js';
+import CKFinderUploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter.js';
 class XMEditor extends ClassicEditor {
     static ControlType = ControlType;
     static BackgroundColorClass = BackgroundColorClass;
@@ -41,6 +44,7 @@ XMEditor.builtinPlugins = [
     SimpleUploadAdapter, ImageUpload, ImageInsert,
     List, ListProperties,
     SourceEditing,
+    CKFinder, Link, CKFinderUploadAdapter,
     //Placeholder
 ];
 // Editor configuration.
@@ -57,14 +61,14 @@ XMEditor.defaultConfig = {
     },
     toolbar: {
         items: [
-            'undo', 'redo', '|',
             'heading', '|',
             'bold', 'italic', '|',
             'bulletedList', 'numberedList', '|',
             'alignment', '|',
-            'resizeImage', 'insertImage', '|',
+            'resizeImage', 'insertImage', 'ckfinder', '|',
             'math', '|',
-            'sourceEditing', '|'
+            'sourceEditing', '|',
+            'undo', 'redo', '|',
         ],
         shouldNotGroupWhenFull: true
     },
@@ -123,6 +127,14 @@ XMEditor.defaultConfig = {
         insert: {
             type: 'inline'
         }
+    },
+    ckfinder: {
+        // Open the file manager in the pop-up window.
+        openerMethod: 'modal',
+        options: {
+            resourceType: 'Images'
+        },
+        uploadUrl: 'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
     }
 }
 export default XMEditor;
