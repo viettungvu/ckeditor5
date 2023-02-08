@@ -1,0 +1,123 @@
+.fieldsLinker {
+    margin-bottom: -40px;
+    padding-top: 22px;
+}
+
+.fieldsLinker [class*="col-"] {
+    margin-bottom: 0 !important;
+}
+
+.fieldsLinker .FL-left,
+.fieldsLinker .FL-right {
+    position: relative;
+}
+
+.fieldsLinker .unlink {
+    display: none;
+}
+
+.fieldsLinker .link {
+    position: absolute;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+}
+
+.fieldsLinker .link::before {
+    content: none;
+}
+
+.fieldsLinker select {
+    position: relative;
+    position: absolute;
+    top: -17px;
+    right: 0;
+    left: 0;
+    border: none;
+    padding: 0;
+    background: none;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+}
+
+.fieldsLinker .FL-mid canvas {
+    /*margin-top: 34px !important;*/
+}
+
+.fieldsLinker ul {
+    margin-left: 0px;
+    padding-left: 0px;
+    font-weight: normal;
+    list-style: none;
+}
+
+tr td  {
+    padding-left: 10px;
+}
+
+tr td:not(:last-child)  {
+    border-right: 1px solid grey;
+}
+
+.fieldsLinker li {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    margin: 0 0 20px;
+    border: solid 1px #D3D3D3;
+    border-radius: 5px;
+    min-height: 70px;
+    padding: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    text-align: center;
+    text-overflow: ellipsis;
+    color: black;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.fieldsLinker .FL-left li,
+.fieldsLinker .FL-right li {
+    margin: 20px 0;
+}
+
+@media screen and (max-width: 767px) {
+    .fieldsLinker li div {
+        width: 100% !important;
+        white-space: normal;
+    }
+}
+
+.fieldsLinker > .FL-right li {
+    border-style: dashed;
+    border-color: #000;
+    background-color: #E0EFFF;
+}
+
+.fieldsLinker li.selected {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);    
+}
+
+.fieldsLinker li[data-mandatory='true'] {
+    background: linear-gradient(#D7504C, #C12F2B);
+    background-color: #D7504C;
+    color: white;
+}
+
+.fieldsLinker li.inactive {
+    opacity: 0.5;
+}
+
+.fieldsLinker li.linkOver {
+    border: solid 2px transparent; /*plus 1px*/
+    padding: 4px 1px 4px 7px; /* minus 1px*/
+}
+

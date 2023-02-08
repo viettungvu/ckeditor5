@@ -1,0 +1,76 @@
+﻿
+.multiselect-container.dropdown-menu {
+    width: 100% !important;
+}
+
+.multiselect-option.dropdown-item {
+    padding: 8px 40px !important;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    z-index: 5555;
+    top: 0;
+    left: 0;
+    height: 100%;
+    opacity: .6;
+    width: 100%;
+    background: #000;
+}
+
+    .overlay .loading-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -50px;
+        font-size: 27px;
+        color: #fff;
+        max-width: 100px;
+    }
+
+        .overlay .loading-text img {
+            width: 100%;
+            height: auto;
+        }
+
+#answerToggle img {
+    max-height: 300px;
+}
+
+.question img {
+    max-height: 300px;
+    max-width: 300px;
+}
+
+.question li .qa-img {
+    max-height: 50px;
+}
+
+.tr.hidden{
+    display:none;
+}
+.tr.active {
+    display: flex;
+}
+.couponcode {
+    color: red;
+    cursor: pointer;
+}
+
+    .couponcode:hover .coupontooltip {
+        display: block;
+    }
+
+.coupontooltip {
+    position: absolute;
+    white-space: nowrap;
+    display: none;
+    background: #ffffff;
+    border: 1px solid black;
+    color: black;
+    padding: 5px;
+    z-index: 9999;
+    bottom: 20px;
+}

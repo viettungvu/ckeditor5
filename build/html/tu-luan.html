@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <title>Chi tiết -Câu hỏi điền vào chỗ trống - Loại 1</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Baloo+2:wght@400;500;600;700;800&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/build/fonts/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/build/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/build/css/datepicker.min.css" />
+    <link rel="stylesheet" href="/build/css/fancybox.css" />
+    <link rel="stylesheet" href="/build/css/fieldsLinker.css" />
+    <link rel="stylesheet" href="/build/css/styles.css" />
+    <link rel="stylesheet" href="/build/ckeditor5.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.css"
+        integrity="sha384-Juol1FqnotbkyZUT5Z7gUPjQ9gzlwCENvUZTpQBAPxtusdwFLRy382PSDx5UUJ4/" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/katex.min.js"
+        integrity="sha384-97gW6UIJxnlKemYavrqDHSX3SiygeOwIZhwyOKRfSaf0JWKRVj9hLASHgFTzT+0O"
+        crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.3/dist/contrib/auto-render.min.js"
+        integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05"
+        crossorigin="anonymous"></script>
+    <script src="/build/js/jquery.min.js"></script>
+    <script src="/build/js/jsrender.min.js"></script>
+    <script src="/build/ckeditor5.bundle.js"></script>
+</head>
+
+<body>
+    <header id="header" class="site-header">
+        <div class="site-header__top">
+            <div class="container d-flex align-items-center">
+                <div class="site-header__logo">
+                    <a class="navbar-brand" href="/">
+                        <div class="navbar-brand__logo">
+                            <span class="fz-40 fw-bold font-baloo c-blue">X-Math</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="site-header__wrapper">
+                    <div class="nav-search">
+                        <button type="button" class="c-blue nav-search-toggler d-flex d-md-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 14 14"
+                                fill="none">
+                                <path
+                                    d="M5.88891 10.7778C8.58898 10.7778 10.7778 8.58898 10.7778 5.88891C10.7778 3.18884 8.58898 1 5.88891 1C3.18884 1 1 3.18884 1 5.88891C1 8.58898 3.18884 10.7778 5.88891 10.7778Z"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path d="M13 13L10 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <form class="nav-search-form">
+                            <input type="text" class="fz-14 c-text form-control" placeholder="Tìm kiếm...">
+                            <button type="submit" class="form-submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14"
+                                    fill="none">
+                                    <path
+                                        d="M5.88891 10.7778C8.58898 10.7778 10.7778 8.58898 10.7778 5.88891C10.7778 3.18884 8.58898 1 5.88891 1C3.18884 1 1 3.18884 1 5.88891C1 8.58898 3.18884 10.7778 5.88891 10.7778Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path d="M13 13L10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                    <button type="button" class="c-blue nav-full-screen">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path
+                                d="M6 1H3C2.46957 1 1.96086 1.21071 1.58579 1.58579C1.21071 1.96086 1 2.46957 1 3V6M19 6V3C19 2.46957 18.7893 1.96086 18.4142 1.58579C18.0391 1.21071 17.5304 1 17 1H14M14 19H17C17.5304 19 18.0391 18.7893 18.4142 18.4142C18.7893 18.0391 19 17.5304 19 17V14M1 14V17C1 17.5304 1.21071 18.0391 1.58579 18.4142C1.96086 18.7893 2.46957 19 3 19H6"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+
+                    <div class="nav-notification">
+                        <a class="c-blue nav-notification__wrapper dropdown-toggle" href="#" role="button"
+                            id="dropdownNotification" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M18 8C18 6.4087 17.3679 4.88258 16.2426 3.75736C15.1174 2.63214 13.5913 2 12 2C10.4087 2 8.88258 2.63214 7.75736 3.75736C6.63214 4.88258 6 6.4087 6 8C6 15 3 17 3 17H21C21 17 18 15 18 8Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M13.73 21C13.5542 21.3031 13.3019 21.5547 12.9982 21.7295C12.6946 21.9044 12.3504 21.9965 12 21.9965C11.6496 21.9965 11.3054 21.9044 11.0018 21.7295C10.6982 21.5547 10.4458 21.3031 10.27 21"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <div class="nav-notification__count">
+                                <span class="fz-7 fw-bold c-white">100</span>
+                            </div>
+                        </a>
+                        <div class="nav-notification__menu dropdown-menu" aria-labelledby="dropdownNotification">
+                            <p class="fz-16 fw-medium nav-notification__title">Thông báo</p>
+                            <ul class="nav-notification__list">
+                                <li class="nav-notification__item">
+                                    <a href="" class="nav-notification__item-inner">
+                                        <div class="nav-notification__item-icon">
+
+                                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M13.3583 0.365694L16.895 7.53203C16.9531 7.65008 17.0655 7.73155 17.1957 7.75041L25.1043 8.89967C25.432 8.94719 25.5629 9.35001 25.3257 9.58122L19.6032 15.1593C19.5089 15.2509 19.4659 15.3833 19.4881 15.5127L20.8392 23.3892C20.895 23.7155 20.5525 23.9644 20.2594 23.8102L13.1859 20.0912C13.0694 20.0301 12.9306 20.0301 12.814 20.0912L5.74048 23.8102C5.44741 23.9641 5.10494 23.7155 5.16076 23.3892L6.5118 15.5127C6.53405 15.3829 6.49105 15.2509 6.39676 15.1593L0.674263 9.58122C0.43702 9.35001 0.5679 8.94757 0.895665 8.89967L8.80427 7.75041C8.93439 7.73155 9.04679 7.64971 9.10487 7.53203L12.6416 0.365694C12.7884 0.0688571 13.2116 0.0688571 13.3583 0.365694Z"
+                                                    fill="#F3CC30" />
+                                                <path
+                                                    d="M13 2.021L9.84829 8.12595C9.68308 8.44617 9.3655 8.66003 9.00681 8.69246L2.16333 9.31706L9.39341 9.65501C9.85244 9.67651 10.273 9.39816 10.4322 8.96705L13 2.021Z"
+                                                    fill="#F7DB5E" />
+                                                <path
+                                                    d="M5.31652 22.4829L5.16112 23.3893C5.1053 23.7155 5.44777 23.9645 5.74084 23.8102L12.8144 20.0913C12.9309 20.0302 13.0697 20.0302 13.1863 20.0913L20.2598 23.8102C20.5529 23.9645 20.8954 23.7155 20.8395 23.3893L19.4881 15.5127C19.4659 15.383 19.5089 15.251 19.6032 15.1593L25.3256 9.5813C25.5629 9.35009 25.432 8.94765 25.1042 8.89974L22.4553 8.51465C18.171 16.2037 11.6104 20.2519 5.31652 22.4829Z"
+                                                    fill="#EDBD31" />
+                                            </svg>
+
+                                        </div>
+                                        <div class="nav-notification__item-content">
+                                            <p class="fz-14 fw-medium nav-notification__item-title">Chúc mừng bạn đã
+                                                chinh phục thử thách: “Tham gia 10 cuộc thi liên tiếp"</p>
+                                            <p class="fz-12 nav-notification__item-date">18:20, Ngày 09/02/2022</p>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="nav-notification__item">
+                                    <a href="" class="nav-notification__item-inner">
+                                        <div class="nav-notification__item-icon">
+
+                                            <svg width="26" height="24" viewBox="0 0 26 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M13.3583 0.365694L16.895 7.53203C16.9531 7.65008 17.0655 7.73155 17.1957 7.75041L25.1043 8.89967C25.432 8.94719 25.5629 9.35001 25.3257 9.58122L19.6032 15.1593C19.5089 15.2509 19.4659 15.3833 19.4881 15.5127L20.8392 23.3892C20.895 23.7155 20.5525 23.9644 20.2594 23.8102L13.1859 20.0912C13.0694 20.0301 12.9306 20.0301 12.814 20.0912L5.74048 23.8102C5.44741 23.9641 5.10494 23.7155 5.16076 23.3892L6.5118 15.5127C6.53405 15.3829 6.49105 15.2509 6.39676 15.1593L0.674263 9.58122C0.43702 9.35001 0.5679 8.94757 0.895665 8.89967L8.80427 7.75041C8.93439 7.73155 9.04679 7.64971 9.10487 7.53203L12.6416 0.365694C12.7884 0.0688571 13.2116 0.0688571 13.3583 0.365694Z"
+                                                    fill="#F3CC30" />
+                                                <path
+                                                    d="M13 2.021L9.84829 8.12595C9.68308 8.44617 9.3655 8.66003 9.00681 8.69246L2.16333 9.31706L9.39341 9.65501C9.85244 9.67651 10.273 9.39816 10.4322 8.96705L13 2.021Z"
+                                                    fill="#F7DB5E" />
+                                                <path
+                                                    d="M5.31652 22.4829L5.16112 23.3893C5.1053 23.7155 5.44777 23.9645 5.74084 23.8102L12.8144 20.0913C12.9309 20.0302 13.0697 20.0302 13.1863 20.0913L20.2598 23.8102C20.5529 23.9645 20.8954 23.7155 20.8395 23.3893L19.4881 15.5127C19.4659 15.383 19.5089 15.251 19.6032 15.1593L25.3256 9.5813C25.5629 9.35009 25.432 8.94765 25.1042 8.89974L22.4553 8.51465C18.171 16.2037 11.6104 20.2519 5.31652 22.4829Z"
+                                                    fill="#EDBD31" />
+                                            </svg>
+
+                                        </div>
+                                        <div class="nav-notification__item-content">
+                                            <p class="fz-14 fw-medium nav-notification__item-title">Chúc mừng bạn đã
+                                                chinh phục thử thách: “Tham gia 10 cuộc thi liên tiếp"</p>
+                                            <p class="fz-12 nav-notification__item-date">18:20, Ngày 09/02/2022</p>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="" class="btn btn-danger btn-delete-notification">
+                                <svg class="me-2" width="13" height="11" viewBox="0 0 13 11" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M9.5 0L13 5.5L9.5 11H0V0H9.5ZM2.77188 7.78044L3.47906 8.55937L5.51031 6.325L7.54156 8.55937L8.25 7.78044L6.21875 5.54606L8.25 3.31169L7.54281 2.53378L5.51156 4.76816L3.48031 2.53378L2.77312 3.31169L4.80437 5.54606L2.77188 7.78044Z"
+                                        fill="currentColor" />
+                                </svg>
+                                <span class="fz-14 fw-medium">Xoá tất cả</span>
+                            </a>
+                            <button class="nav-notification__btn js-notification-close">
+
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.5 16.5L1.5 1.5M16.5 1.5L1.5 16.5L16.5 1.5Z" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="nav-lang">
+                        <select>
+                            <option value="Tiếng Việt">Tiếng Việt</option>
+                            <option value="Tiếng Anh" selected>Tiếng Anh</option>
+                        </select>
+                        <div class="nav-lang__selected">
+                            <div class="nav-lang__image">
+                                <i class="ico ico-flag-en"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-account">
+                        <a class="nav-account__wrapper dropdown-toggle" href="#" role="button" id="dropdownAccount"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="nav-account__image ratio">
+                                <figure class="image">
+                                    <img src="images/avatar.png" alt="">
+                                </figure>
+                            </div>
+                            <span class="fz-14 c-text">Lan</span>
+                        </a>
+                        <div class="nav-account__menu dropdown-menu" aria-labelledby="dropdownAccount">
+                            <div class="nav-account__detail">
+                                <div class="nav-account__detail-image ratio">
+                                    <div class="image">
+                                        <span class="fz-32">N</span>
+                                    </div>
+                                </div>
+                                <div class="nav-account__detail-content">
+                                    <p class="fz-18 fw-bold c-text">Luat Nguyen</p>
+                                    <p class="fz-14 c-grey">luatdesigner@xmedia.vn</p>
+                                </div>
+                            </div>
+                            <a href="#" class="nav-account__link">
+                                <i class="fz-12 fa fa-edit"></i>
+                                <span class="fz-14">Cập nhật thông tin</span>
+                            </a>
+                            <a href="#" class="nav-account__link">
+                                <i class="fz-12 fa fa-refresh"></i>
+                                <span class="fz-14">Quản lý CV</span>
+                            </a>
+                            <a href="#" class="nav-account__link">
+                                <i class="fz-12 fa fa-key"></i>
+                                <span class="fz-14">Đổi mật khẩu</span>
+                            </a>
+                            <a href="#" class="nav-account__link disabled">
+                                <i class="fz-12 fa fa-sign-out"></i>
+                                <span class="fz-14">Đăng xuất</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="position-relative">
+                        <a class="dropdown-toggle nav-menu-button-option btn c-blue" href="#" role="button"
+                            id="dropdownSettings" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <path
+                                    d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.258 9.77251 19.9887C9.5799 19.7194 9.31074 19.5143 9 19.4C8.69838 19.2669 8.36381 19.2272 8.03941 19.286C7.71502 19.3448 7.41568 19.4995 7.18 19.73L7.12 19.79C6.93425 19.976 6.71368 20.1235 6.47088 20.2241C6.22808 20.3248 5.96783 20.3766 5.705 20.3766C5.44217 20.3766 5.18192 20.3248 4.93912 20.2241C4.69632 20.1235 4.47575 19.976 4.29 19.79C4.10405 19.6043 3.95653 19.3837 3.85588 19.1409C3.75523 18.8981 3.70343 18.6378 3.70343 18.375C3.70343 18.1122 3.75523 17.8519 3.85588 17.6091C3.95653 17.3663 4.10405 17.1457 4.29 16.96L4.35 16.9C4.58054 16.6643 4.73519 16.365 4.794 16.0406C4.85282 15.7162 4.81312 15.3816 4.68 15.08C4.55324 14.7842 4.34276 14.532 4.07447 14.3543C3.80618 14.1766 3.49179 14.0813 3.17 14.08H3C2.46957 14.08 1.96086 13.8693 1.58579 13.4942C1.21071 13.1191 1 12.6104 1 12.08C1 11.5496 1.21071 11.0409 1.58579 10.6658C1.96086 10.2907 2.46957 10.08 3 10.08H3.09C3.42099 10.0723 3.742 9.96512 4.0113 9.77251C4.28059 9.5799 4.48572 9.31074 4.6 9C4.73312 8.69838 4.77282 8.36381 4.714 8.03941C4.65519 7.71502 4.50054 7.41568 4.27 7.18L4.21 7.12C4.02405 6.93425 3.87653 6.71368 3.77588 6.47088C3.67523 6.22808 3.62343 5.96783 3.62343 5.705C3.62343 5.44217 3.67523 5.18192 3.77588 4.93912C3.87653 4.69632 4.02405 4.47575 4.21 4.29C4.39575 4.10405 4.61632 3.95653 4.85912 3.85588C5.10192 3.75523 5.36217 3.70343 5.625 3.70343C5.88783 3.70343 6.14808 3.75523 6.39088 3.85588C6.63368 3.95653 6.85425 4.10405 7.04 4.29L7.1 4.35C7.33568 4.58054 7.63502 4.73519 7.95941 4.794C8.28381 4.85282 8.61838 4.81312 8.92 4.68H9C9.29577 4.55324 9.54802 4.34276 9.72569 4.07447C9.90337 3.80618 9.99872 3.49179 10 3.17V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29577 19.6572 9.54802 19.9255 9.72569C20.1938 9.90337 20.5082 9.99872 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15V15Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </a>
+                        <div class="nav-menu-options dropdown-menu" aria-labelledby="dropdownSettings">
+                            <div class="fz-20 fw-bold nav-menu-options__title">Cấu hình bàn phím</div>
+                            <div class="nav-menu-options__wrapper">
+                                <p class="fz-15">Ngôn ngữ bàn phím</p>
+                                <select class="fz-15 fw-medium form-select">
+                                    <option selected>Vietnamese</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="nav-menu-options__list">
+                                <div class="nav-menu-options__item">
+                                    <p class="fz-15 fw-medium">Hiển thị bàn phím</p>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="nav-menu-options__item">
+                                    <p class="fz-15 fw-medium">Hiển thị bàn tay</p>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="nav-menu-options__item">
+                                    <p class="fz-15 fw-medium">Hiển thị chuyển động bàn tay</p>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="nav-menu-options__bottom">
+                                <a href="" class="btn">
+                                    <span class="fz-15 fw-bold">Huỷ bỏ</span>
+                                </a>
+                                <a href="" class="btn">
+                                    <span class="fz-15 fw-bold">OK</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="side-header__main">
+            <div class="container">
+                <nav class="navbar">
+                    <div class="navbar-collapse">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <div class="nav-link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="26"
+                                            viewBox="0 0 23 26" fill="none">
+                                            <path
+                                                d="M1.5 9.69086L11.5 1.91309L21.5 9.69086V21.9131C21.5 22.5025 21.2659 23.0677 20.8491 23.4844C20.4324 23.9012 19.8671 24.1353 19.2778 24.1353H3.72222C3.13285 24.1353 2.56762 23.9012 2.15087 23.4844C1.73413 23.0677 1.5 22.5025 1.5 21.9131V9.69086Z"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M8.16661 24.1353V13.0242H14.8333V24.1353" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">
+                                    <div class="nav-link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25"
+                                            viewBox="0 0 20 25" fill="none">
+                                            <path
+                                                d="M1.19627 20.2773C1.19627 19.5477 1.48611 18.8479 2.00203 18.332C2.51795 17.8161 3.21769 17.5262 3.94731 17.5262H18.803"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path
+                                                d="M3.94734 1.02002H18.803V23.0284H3.94734C3.21771 23.0284 2.51797 22.7386 2.00205 22.2226C1.48613 21.7067 1.19629 21.007 1.19629 20.2774V3.77107C1.19629 3.04144 1.48613 2.3417 2.00205 1.82578C2.51797 1.30986 3.21771 1.02002 3.94734 1.02002V1.02002Z"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <span>Quản trị kho học liệu</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <div class="nav-link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24"
+                                            viewBox="0 0 25 24" fill="none">
+                                            <path d="M12.5001 22.1412H23.1365" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path
+                                                d="M17.8183 2.64127C18.2885 2.17111 18.9261 1.90698 19.5911 1.90698C19.9203 1.90698 20.2463 1.97183 20.5504 2.09782C20.8546 2.22381 21.131 2.40847 21.3638 2.64127C21.5966 2.87407 21.7812 3.15044 21.9072 3.4546C22.0332 3.75877 22.0981 4.08477 22.0981 4.414C22.0981 4.74322 22.0332 5.06923 21.9072 5.37339C21.7812 5.67756 21.5966 5.95393 21.3638 6.18673L6.59104 20.9595L1.86377 22.1413L3.04559 17.414L17.8183 2.64127Z"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <span>Thống kê báo cáo</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <div class="nav-link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="24"
+                                            viewBox="0 0 20 24" fill="none">
+                                            <path
+                                                d="M11.7586 1.26562H3.15171C2.58104 1.26563 2.03375 1.49232 1.63022 1.89585C1.2267 2.29937 1 2.84667 1 3.41734V20.631C1 21.2017 1.2267 21.749 1.63022 22.1525C2.03375 22.5561 2.58104 22.7827 3.15171 22.7827H16.062C16.6327 22.7827 17.18 22.5561 17.5835 22.1525C17.987 21.749 18.2137 21.2017 18.2137 20.631V7.72076L11.7586 1.26562Z"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path d="M11.2804 1.26562V7.36214H17.3769" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M13.193 13.0402H5.0643" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M13.193 17.1045H5.0643" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M7.09647 8.97588H6.08039H5.0643" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <span>Quản lý học tập</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <div class="nav-link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="24"
+                                            viewBox="0 0 29 24" fill="none">
+                                            <path
+                                                d="M20.579 22.6604V20.2968C20.579 19.0431 20.081 17.8407 19.1944 16.9541C18.3079 16.0676 17.1055 15.5695 15.8517 15.5695H6.3972C5.14345 15.5695 3.94104 16.0676 3.05451 16.9541C2.16797 17.8407 1.66992 19.0431 1.66992 20.2968V22.6604"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path
+                                                d="M11.1245 10.8422C13.7353 10.8422 15.8518 8.72577 15.8518 6.11497C15.8518 3.50417 13.7353 1.3877 11.1245 1.3877C8.51369 1.3877 6.39722 3.50417 6.39722 6.11497C6.39722 8.72577 8.51369 10.8422 11.1245 10.8422Z"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path
+                                                d="M27.67 22.6605V20.2969C27.6692 19.2495 27.3206 18.232 26.6789 17.4042C26.0371 16.5764 25.1387 15.9851 24.1245 15.7233"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path
+                                                d="M19.3972 1.54129C20.4141 1.80165 21.3154 2.39303 21.959 3.2222C22.6026 4.05138 22.9519 5.07118 22.9519 6.12084C22.9519 7.17049 22.6026 8.1903 21.959 9.01947C21.3154 9.84865 20.4141 10.44 19.3972 10.7004"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <span>Học sinh</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <div class="nav-link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="24"
+                                            viewBox="0 0 27 24" fill="none">
+                                            <path
+                                                d="M22.9734 5.99851H3.69062C2.35942 5.99851 1.28027 7.07766 1.28027 8.40886V20.4606C1.28027 21.7918 2.35942 22.871 3.69062 22.871H22.9734C24.3046 22.871 25.3838 21.7918 25.3838 20.4606V8.40886C25.3838 7.07766 24.3046 5.99851 22.9734 5.99851Z"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path
+                                                d="M18.1527 22.8709V3.58808C18.1527 2.94882 17.8988 2.33574 17.4468 1.88371C16.9947 1.43168 16.3817 1.17773 15.7424 1.17773H10.9217C10.2824 1.17773 9.66936 1.43168 9.21733 1.88371C8.7653 2.33574 8.51135 2.94882 8.51135 3.58808V22.8709"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                    <span>Quản trị thông tin</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="overlay"></div>
+
+    <main id="main" class="site-main">
+        <div class="container container--large">
+            <div class="add-new">
+                <div class="add-new__head">
+                    <h1 class="fz-24 fw-bold c-blue">Tạo bài luyện tập</h1>
+                    <a href="" class="btn btn-inline">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                            <path
+                                d="M8.15659 2.68686H2.59035C2.16856 2.68686 1.76405 2.85441 1.4658 3.15266C1.16755 3.45091 1 3.85542 1 4.27721V15.4097C1 15.8315 1.16755 16.236 1.4658 16.5342C1.76405 16.8325 2.16856 17 2.59035 17H13.7228C14.1446 17 14.5491 16.8325 14.8474 16.5342C15.1456 16.236 15.3132 15.8315 15.3132 15.4097V9.84345"
+                                stroke="#04B64B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M14.1208 1.49406C14.4372 1.17772 14.8662 1 15.3136 1C15.761 1 16.19 1.17772 16.5064 1.49406C16.8227 1.8104 17.0004 2.23945 17.0004 2.68682C17.0004 3.1342 16.8227 3.56325 16.5064 3.87959L8.95219 11.4338L5.77148 12.2289L6.56666 9.04824L14.1208 1.49406Z"
+                                stroke="#04B64B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <span class="fz-14 fw-bold">Chỉnh sửa</span>
+                    </a>
+                </div>
+                <div class="add-new__body">
+                    <div class="row gutters-10">
+                        <div class="col-12 col-md-6">
+                            <input type="text" class="fz-16 c-text form-control" placeholder="Tên bài luyện tập">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <select class="fz-16 c-text form-select">
+                                <option selected disabled>Chủ đề/ Chủ điểm</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <select class="fz-16 c-text form-select">
+                                <option selected disabled>Khối</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <select class="fz-16 c-text form-select">
+                                <option selected disabled>Lớp</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <input type="text" class="fz-16 c-text form-control" placeholder="Thời gian làm bài">
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <input type="text" class="fz-16 c-text form-control" placeholder="Số câu hỏi">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-checkbox-radio">
+                                <input type="checkbox" checked>
+                                <span class="fz-16">Sắp xếp ngẫu nhiên các câu hỏi</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="add-new__footer">
+                        <button class="btn btn-primary-ol" data-bs-toggle="modal" data-bs-target="#addNewToggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="none">
+                                <path
+                                    d="M10 0C4.48606 0 0 4.48606 0 10C0 15.5139 4.48606 20 10 20C15.5139 20 20 15.5139 20 10C20 4.48606 15.5139 0 10 0ZM14.6154 10.7692H10.7692V14.6154H9.23077V10.7692H5.38462V9.23077H9.23077V5.38462H10.7692V9.23077H14.6154V10.7692Z"
+                                    fill="currentColor" />
+                            </svg>
+                            <span class="fz-16 fw-bold">Thêm câu hỏi</span>
+                        </button>
+                        <button class="btn btn-success">
+                            <span class="fz-15 fw-bold">Giao bài tập</span>
+                        </button>
+                        <button class="btn btn-warning">
+                            <span class="fz-15 fw-bold">Lịch sử luyện tập</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <h2 class="fz-24 fw-bold c-blue mt-4 mt-md-5 mb-3">Thêm câu hỏi mới</h2>
+            <div class="common-tabs">
+                <ul class="nav nav-tabs" id="questionTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="fz-16 fw-bold nav-link" id="lua-chon-dap-an-tab" data-bs-toggle="tab"
+                            data-bs-target="#lua-chon-dap-an" type="button" role="tab" aria-controls="lua-chon-dap-an"
+                            aria-selected="false">Lựa chọn đáp án</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="fz-16 fw-bold nav-link" id="sap-xep-tab" data-bs-toggle="tab"
+                            data-bs-target="#sap-xep" type="button" role="tab" aria-controls="sap-xep"
+                            aria-selected="false">Sắp xếp</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="fz-16 fw-bold nav-link active" id="dien-vao-cho-trong-tab" data-bs-toggle="tab"
+                            data-bs-target="#dien-vao-cho-trong" type="button" role="tab"
+                            aria-controls="dien-vao-cho-trong" aria-selected="true">Điền vào chỗ trống</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="fz-16 fw-bold nav-link" id="ghep-noi-matching-tab" data-bs-toggle="tab"
+                            data-bs-target="#ghep-noi-matching" type="button" role="tab"
+                            aria-controls="ghep-noi-matching" aria-selected="false">Ghép nối (Matching)</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="fz-16 fw-bold nav-link" id="lua-chon-dung-sai-tab" data-bs-toggle="tab"
+                            data-bs-target="#lua-chon-dung-sai" type="button" role="tab"
+                            aria-controls="lua-chon-dung-sai" aria-selected="false">Lựa chọn đúng/sai</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="fz-16 fw-bold nav-link" id="tu-luan-tab" data-bs-toggle="tab"
+                            data-bs-target="#tu-luan" type="button" role="tab" aria-controls="tu-luan"
+                            aria-selected="false">Tự luận</button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="questionTabContent">
+                    <div class="tab-pane fade show active" id="dien-vao-cho-trong" role="tabpanel"
+                        aria-labelledby="dien-vao-cho-trong-tab">
+                        <div class="question">
+                            <div class="question-topic">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="fz-16 fw-semi-bold">Chủ điểm:</p>
+                                        <select class="fz-15 c-light-2 form-select">
+                                            <option value="" disabled selected>Tên chủ điểm</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="fz-16 fw-semi-bold mb-2">Nhập câu hỏi:</p>
+                            <div class="question-box question-box--primary" id="box-editor-question">
+                            </div>
+                            <p class="fz-16 fw-semi-bold mb-2">Nhập đáp án - Giáo viên nhập kết quả</p>
+                            <p class="mb-3">
+                                <input type="text" class="form-control form-control--large" value="">
+                              </p>
+                            <p class="fz-16 fw-semi-bold mb-2">Nhập lời giải:</p>
+                            <div class="question-box question-box--warning">
+                                <div id="box-editor-solve"></div>
+                            </div>
+                            <div class="question-bottom">
+                                <a class="btn btn-gray-2" data-bs-toggle="collapse" href="#box-editor-solve" role="button"
+                                    aria-expanded="false" aria-controls="box-editor-solve">
+                                    <span class="fz-14 fw-bold">Ẩn lời giải</span>
+                                </a>
+                                <a href="" class="btn btn-primary">
+                                    <span class="fz-16 fw-bold">Lưu câu hỏi</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="box-list-dap-an">
+
+            </div>
+            <script id="EDITOR_CAU_HOI" type="text/x-jsrender">
+                <div class="question-group" id="{{:editorId}}">
+                    <div class="question-group__left">
+                        <div class="question-editor">
+                            <div class="question-editor__head">
+                                <div class="question-editor__main">
+                                    <a class="btn btn-o-primary" data-bs-toggle="collapse"
+                                        href="#preview{{:editorId}}" role="button" aria-expanded="false"
+                                        aria-controls="preview{{:editorId}}">
+                                        <span class="fz-14">Xem trước</span>
+                                    </a>
+                                </div>
+                                <div class="question-editor__btn">
+                                    <a class="btn btn-o-primary" data-bs-toggle="collapse"
+                                        href="#collapseToolboxQuestion{{:editorId}}" role="button"
+                                        aria-expanded="false" aria-controls="collapseToolboxQuestion{{:editorId}}">
+                                        <span class="fz-14">Công cụ</span>
+                                    </a>
+                                    <a href="" class="btn btn-o-primary btn-icon" id="btn-reset-ckcontent{{:editorId}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="17"
+                                            viewBox="0 0 14 17" fill="none">
+                                            <path
+                                                d="M9.53541 5.11118C9.53541 5.11118 10.3966 4.68694 7.27278 4.68694C6.15402 4.68694 5.06038 5.01869 4.13016 5.64024C3.19994 6.26179 2.47493 7.14523 2.04679 8.17883C1.61866 9.21243 1.50664 10.3498 1.7249 11.447C1.94316 12.5443 2.4819 13.5522 3.27298 14.3433C4.06407 15.1344 5.07198 15.6731 6.16924 15.8914C7.26651 16.1096 8.40386 15.9976 9.43746 15.5695C10.4711 15.1414 11.3545 14.4163 11.9761 13.4861C12.5976 12.5559 12.9294 11.4623 12.9294 10.3435"
+                                                stroke="currentColor" stroke-width="1.5"
+                                                stroke-miterlimit="10" stroke-linecap="square" />
+                                            <path d="M7.27246 2L10.1007 4.82829L7.27246 7.65657"
+                                                stroke="currentColor" stroke-width="1.5"
+                                                stroke-miterlimit="10" stroke-linecap="square" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="fz-15 lh-1_6 question-editor__content wysiwyg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="question-group__right collapse" id="collapseToolboxQuestion{{:editorId}}" data-editor-id="{{:editorId}}">
+                        <div class="group-equation-button">
+                            <a href="https://www.mathcha.io" target="_blank" class="btn btn-danger-ol">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                    viewBox="0 0 14 14" fill="none">
+                                    <path
+                                        d="M7 0C3.14024 0 0 3.14024 0 7C0 10.8598 3.14024 14 7 14C10.8598 14 14 10.8598 14 7C14 3.14024 10.8598 0 7 0ZM10.2308 7.53846H7.53846V10.2308H6.46154V7.53846H3.76923V6.46154H6.46154V3.76923H7.53846V6.46154H10.2308V7.53846Z"
+                                        fill="currentColor" />
+                                </svg>
+                                <span class="fz-14">Công thức phức tạp</span>
+                            </a>
+                            <a href="" class="btn btn-primary-ol"
+                                type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseDragEquationQuestion{{:editorId}}" aria-expanded="false"
+                                aria-controls="collapseDragEquationQuestion{{:editorId}}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                    viewBox="0 0 14 14" fill="none">
+                                    <path
+                                        d="M7 0C3.14024 0 0 3.14024 0 7C0 10.8598 3.14024 14 7 14C10.8598 14 14 10.8598 14 7C14 3.14024 10.8598 0 7 0ZM10.2308 7.53846H7.53846V10.2308H6.46154V7.53846H3.76923V6.46154H6.46154V3.76923H7.53846V6.46154H10.2308V7.53846Z"
+                                        fill="currentColor" />
+                                </svg>
+                                <span class="fz-14">Công thức đơn giản</span>
+                            </a>
+                        </div>
+                        <div class="select-box collapse" id="collapseDragEquationQuestion{{:editorId}}" data-editor-id="{{:editorId}}"> 
+                            <p class="fz-15 fst-italic"><span class="c-red">*</span> Kéo định dạng sang
+                                vị trí bất kỳ trên câu hỏi</p>
+                            <div class="select-box__options" id="selectBoxOptions{{:editorId}}">
+                                <div class="item" data-type="phep-chia" draggable="true">
+                                    <button class="dropdown-toggle" type="button"
+                                        id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span class="division">
+                                            <span>
+                                                <span><input type="text"></span>
+                                                <span><input type="text"></span>
+                                            </span>
+                                            <span>
+                                                <span><input type="text"></span>
+                                                <span><input type="text"></span>
+                                            </span>
+                                        </span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end"
+                                        aria-labelledby="dropdownMenuButton1" draggable="false">
+                                        <form id="phep-chia-form{{:editorId}}">
+                                            <p class="fz-15 fw-bold c-blue">Phép chia:</p>
+                                            <div class="dropdown-menu__main">
+                                                <span class="division">
+                                                    <span>
+                                                        <span><input type="text" class="katex"
+                                                                name="inputSoBiChia"></span>
+                                                        <span><input type="text" class="katex"
+                                                                name="inputSoDu"></span>
+                                                    </span>
+                                                    <span>
+                                                        <span><input type="text" class="katex"
+                                                                name="inputSoChia"></span>
+                                                        <span><input type="text" class="katex"
+                                                                name="inputThuong"></span>
+                                                    </span>
+                                                </span>
+                                                <p class="fz-13 fst-italic c-light">Click sửa đáp án</p>
+                                            </div>
+                                            <div class="dropdown-menu__footer">
+                                                <button class="close" type="reset">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                                        height="20" viewBox="0 0 18 20" fill="none">
+                                                        <path d="M1 4.55573H2.77778H17" stroke="#FF4A4A"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path
+                                                            d="M15.2222 4.55556V17C15.2222 17.4715 15.0349 17.9237 14.7015 18.2571C14.3681 18.5905 13.9159 18.7778 13.4444 18.7778H4.55552C4.08402 18.7778 3.63184 18.5905 3.29844 18.2571C2.96504 17.9237 2.77774 17.4715 2.77774 17V4.55556M5.44441 4.55556V2.77778C5.44441 2.30628 5.63171 1.8541 5.96511 1.5207C6.2985 1.1873 6.75069 1 7.22218 1H10.7777C11.2492 1 11.7014 1.1873 12.0348 1.5207C12.3682 1.8541 12.5555 2.30628 12.5555 2.77778V4.55556"
+                                                            stroke="#FF4A4A" stroke-width="1.5"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M7.22226 9V14.3333" stroke="#FF4A4A"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M10.7777 9V14.3333" stroke="#FF4A4A"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <span class="fz-13 fw-semi-bold">Lưu</span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="item" data-type="phan-so" draggable="true">
+                                    <button class="dropdown-toggle" type="button"
+                                        id="dropdownMenuButton2" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span class="frac frac-input"><span><input type="text"
+                                                    class="katex"></span><span><input type="text"
+                                                    class="katex"></span></span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end"
+                                        aria-labelledby="dropdownMenuButton2" draggable="false">
+                                        <form id="phanso-form{{:editorId}}">
+                                            <p class="fz-15 fw-bold c-blue">Phân số:</p>
+                                            <div class="dropdown-menu__main">
+                                                <span class="frac frac-input"><span><input type="text"
+                                                            class="katex"
+                                                            name="inputTuSo"></span><span><input
+                                                            type="text" class="katex"
+                                                            name="inputMauSo"></span></span>
+                                                <p class="fz-13 fst-italic c-light">Click sửa đáp án</p>
+                                            </div>
+                                            <div class="dropdown-menu__footer">
+                                                <button class="close" type="reset">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                                        height="20" viewBox="0 0 18 20" fill="none">
+                                                        <path d="M1 4.55573H2.77778H17" stroke="#FF4A4A"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path
+                                                            d="M15.2222 4.55556V17C15.2222 17.4715 15.0349 17.9237 14.7015 18.2571C14.3681 18.5905 13.9159 18.7778 13.4444 18.7778H4.55552C4.08402 18.7778 3.63184 18.5905 3.29844 18.2571C2.96504 17.9237 2.77774 17.4715 2.77774 17V4.55556M5.44441 4.55556V2.77778C5.44441 2.30628 5.63171 1.8541 5.96511 1.5207C6.2985 1.1873 6.75069 1 7.22218 1H10.7777C11.2492 1 11.7014 1.1873 12.0348 1.5207C12.3682 1.8541 12.5555 2.30628 12.5555 2.77778V4.55556"
+                                                            stroke="#FF4A4A" stroke-width="1.5"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M7.22226 9V14.3333" stroke="#FF4A4A"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M10.7777 9V14.3333" stroke="#FF4A4A"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <span class="fz-13 fw-semi-bold">Lưu</span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="item" data-type="nhap" draggable="true">
+                                    <button class="dropdown-toggle" type="button"
+                                        id="dropdownMenuButton3" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span class="input-number">
+                                            <input type="text" placeholder="" />
+                                        </span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end d-none"
+                                        aria-labelledby="dropdownMenuButton3"></div>
+                                </div>
+                                <div class="item" data-type="lua-chon" draggable="true">
+                                    <button class="dropdown-toggle" type="button"
+                                        id="dropdownMenuButton4" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <span class="number-options" data-value=""><input type="hidden"
+                                                value=""></span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end"
+                                        aria-labelledby="dropdownMenuButton4" draggable="false">
+                                        <form id="lua-chon-form{{:editorId}}">
+                                            <p class="fz-15 fw-bold c-blue">Lựa chọn:</p>
+                                            <div class="dropdown-menu__main">
+                                                <textarea class="dropdown-menu__text katex" rows="4"
+                                                    name="inputOptions"></textarea>
+                                                <p class="fz-15 fst-italic c-light">Click sửa đáp án</p>
+                                            </div>
+                                            <div class="dropdown-menu__footer">
+                                                <button class="close" type="reset">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18"
+                                                        height="20" viewBox="0 0 18 20" fill="none">
+                                                        <path d="M1 4.55573H2.77778H17" stroke="#FF4A4A"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path
+                                                            d="M15.2222 4.55556V17C15.2222 17.4715 15.0349 17.9237 14.7015 18.2571C14.3681 18.5905 13.9159 18.7778 13.4444 18.7778H4.55552C4.08402 18.7778 3.63184 18.5905 3.29844 18.2571C2.96504 17.9237 2.77774 17.4715 2.77774 17V4.55556M5.44441 4.55556V2.77778C5.44441 2.30628 5.63171 1.8541 5.96511 1.5207C6.2985 1.1873 6.75069 1 7.22218 1H10.7777C11.2492 1 11.7014 1.1873 12.0348 1.5207C12.3682 1.8541 12.5555 2.30628 12.5555 2.77778V4.55556"
+                                                            stroke="#FF4A4A" stroke-width="1.5"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M7.22226 9V14.3333" stroke="#FF4A4A"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                        <path d="M10.7777 9V14.3333" stroke="#FF4A4A"
+                                                            stroke-width="1.5" stroke-linecap="round"
+                                                            stroke-linejoin="round" />
+                                                    </svg>
+                                                </button>
+                                                <button class="btn btn-primary" type="submit">
+                                                    <span class="fz-13 fw-semi-bold">Lưu</span>
+                                                </button>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-preview collapse" id="preview{{:editorId}}" style="position:relative;">
+                    <div class="question-group__next-step">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9"
+                            fill="none">
+                            <path d="M2 2L7 7L12 2" stroke="currentColor" stroke-width="2"
+                                stroke-miterlimit="10" stroke-linecap="square" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9"
+                            fill="none">
+                            <path d="M2 2L7 7L12 2" stroke="currentColor" stroke-width="2"
+                                stroke-miterlimit="10" stroke-linecap="square" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9"
+                            fill="none">
+                            <path d="M2 2L7 7L12 2" stroke="currentColor" stroke-width="2"
+                                stroke-miterlimit="10" stroke-linecap="square" />
+                        </svg>
+                    </div>
+                    <div class="question-preview">
+
+                    </div>
+                </div>
+            </script>
+        </div>
+    </main>
+    <footer id="footer" class="site-footer">
+        <div class="container text-center fz-17">
+            <a href="https://math.vn">Math.vn</a>
+        </div>
+    </footer>
+
+    <script src="/build/js/bootstrap.bundle.min.js"></script>
+    <script src="/build/js/datepicker.min.js"></script>
+    <script src="/build/js/fieldsLinker.js"></script>
+    <script src="/build/js/ofi.min.js"></script>
+    <script src="/build/js/main.min.js?v=1668535090497"></script>
+    <script src="/build/tuluan.js"></script>
+</body>
+
+</html>

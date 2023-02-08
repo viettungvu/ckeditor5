@@ -1,0 +1,185 @@
+.ck-editor__editable_inline {
+    min-height: 200px;
+    max-height:600px;
+}
+
+.ck-widget {
+    border-radius: 4px;
+    cursor: move;
+}
+
+.ck-math-tex {
+    margin: 0 4px;
+}
+
+.t-control {
+    text-align: center;
+    display: inline-block;
+    margin: 4px 8px;
+    vertical-align: middle;
+    padding: 4px;
+    border-radius: 4px;
+    min-width: 28px;
+}
+
+    .t-control.ck-widget {
+        cursor: move;
+        padding: 4px;
+        border-radius: 4px;
+    }
+
+        .t-control.ck-widget input {
+            pointer-events: none;
+        }
+
+        .t-control.ck-widget > .input-number,
+        .t-control.ck-widget > .number-options,
+        .t-control.ck-widget > input {
+            margin: 0;
+            pointer-events: none;
+        }
+
+        .t-control> .number-options >span >span>span {
+            border:none;
+        }
+
+    .t-control > .input-number {
+        padding: 0;
+        height: auto;
+    }
+
+        .t-control > .input-number input {
+            height: 32px;
+        }
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+    .controls > [draggable="true"] {
+        cursor: move;
+    }
+
+
+
+#box-dap-an,
+#box-xem-thu {
+    min-height: 100px;
+    border: 1px solid #000;
+}
+
+.answer-box {
+    margin: 4px;
+    padding: 4px;
+    background: #F9FCFA;
+    border: 1px solid #9EE2BA;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+    .answer-box > .input-number,
+    .answer-box > .number-options {
+        margin: 0;
+    }
+
+    .answer-box.highlight {
+        background-color: #D2DAFF !important;
+    }
+
+    .answer-box:focus-within {
+        outline: none;
+    }
+
+.menu-open {
+    display: block;
+    opacity: 1;
+}
+
+.division > span > span {
+    height: 50%;
+    min-width: 40px;
+}
+
+.division > span:last-of-type span:last-of-type {
+    border-top: none;
+}
+
+.division > span:nth-child(2) > span:first-child {
+    border-bottom: 1px solid #d9d9d9;
+}
+
+.frac input {
+    height: 32px;
+}
+
+
+.number-options > span > span {
+   /* display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 8px 12px;*/
+}
+
+:root {
+    --t-control-bg-color-1: #FFDCA9;
+    --t-control-bg-color-2: #CE7777;
+    --t-control-bg-color-3: #68B984;
+    --t-control-bg-color-4: #009EFF;
+    --t-control-bg-color-5: #5F8D4E;
+    --t-control-bg-color-6: #BA94D1;
+    --t-control-bg-color-7: #497174;
+    --t-control-bg-color-8: #0E5E6F;
+    --t-control-bg-color-9: #3E6D9C;
+    --t-control-bg-color-10: #4E6C50;
+}
+
+.t-control-bg-color_1 {
+    border: 3px solid var(--t-control-bg-color-1);
+}
+
+.t-control-bg-color_2 {
+    border: 3px solid var(--t-control-bg-color-2);
+}
+
+.t-control-bg-color_3 {
+    border: 3px solid var(--t-control-bg-color-3);
+}
+
+.t-control-bg-color_4 {
+    border: 3px solid var(--t-control-bg-color-4);
+}
+
+.t-control-bg-color_5 {
+    border: 3px solid var(--t-control-bg-color-5);
+}
+
+.t-control-bg-color_6 {
+    border: 3px solid var(--t-control-bg-color-6);
+}
+
+.t-control-bg-color_7 {
+    border: 3px solid var(--t-control-bg-color-7);
+}
+
+.t-control-bg-color_8 {
+    border: 3px solid var(--t-control-bg-color-8);
+}
+
+.t-control-bg-color_9 {
+    border: 3px solid var(--t-control-bg-color-9);
+}
+
+.t-control-bg-color_10 {
+    border: 3px solid var(--t-control-bg-color-10);
+}
+.katex .text {
+    font-family: KaTeX_Math;
+    font-style: italic;
+}
+/*.olt p {
+    display: inline-block
+}*/

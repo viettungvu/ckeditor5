@@ -1,0 +1,122 @@
+.fieldsLinkerAdmin {
+    margin-bottom: -40px;
+    padding-top: 22px;
+}
+
+.fieldsLinkerAdmin [class*="col-"] {
+    margin-bottom: 0 !important;
+}
+
+.fieldsLinkerAdmin .FL-left,
+.fieldsLinkerAdmin .FL-right {
+    position: relative;
+}
+
+.fieldsLinkerAdmin .unlink {
+    display: none;
+}
+
+.fieldsLinkerAdmin .link {
+    position: absolute;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+}
+
+.fieldsLinkerAdmin .link::before {
+    content: none;
+}
+
+.fieldsLinkerAdmin select {
+    position: relative;
+    position: absolute;
+    top: -17px;
+    right: 0;
+    left: 0;
+    border: none;
+    padding: 0;
+    background: none;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+}
+
+.fieldsLinkerAdmin .FL-mid canvas {
+    margin-top: 12px !important;
+}
+
+.fieldsLinkerAdmin ul {
+    margin-left: 0px;
+    padding-left: 0px;
+    font-weight: normal;
+    list-style: none;
+}
+
+tr td  {
+    padding-left: 10px;
+}
+
+tr td:not(:last-child)  {
+    border-right: 1px solid grey;
+}
+
+.fieldsLinkerAdmin li,.fieldsLinkerAdmin input {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    margin: 0 0 20px;
+    border: solid 1px #D3D3D3;
+    border-radius: 5px;
+    min-height: 70px;
+    padding: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    color: black;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.fieldsLinkerAdmin .FL-left li,
+.fieldsLinkerAdmin .FL-right li {
+    margin: 20px 0;
+}
+
+@media screen and (max-width: 767px) {
+    .fieldsLinkerAdmin li div {
+        width: 100% !important;
+        white-space: normal;
+    }
+}
+
+.fieldsLinkerAdmin > div:last-child li {
+    border-style: dashed;
+    border-color: #000;
+    background-color: #E0EFFF;
+}
+
+.fieldsLinkerAdmin li.selected {
+    -webkit-filter: invert(100%);
+    filter: invert(100%);    
+}
+
+.fieldsLinkerAdmin li[data-mandatory='true'] {
+    background: linear-gradient(#D7504C, #C12F2B);
+    background-color: #D7504C;
+    color: white;
+}
+
+.fieldsLinkerAdmin li.inactive {
+    opacity: 0.5;
+}
+
+.fieldsLinkerAdmin li.linkOver {
+    border: solid 2px transparent; /*plus 1px*/
+    padding: 4px 1px 4px 7px; /* minus 1px*/
+}
+

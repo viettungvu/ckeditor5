@@ -1,0 +1,123 @@
+﻿.xcustom-select-wrapper {
+	position: relative;
+	user-select: none;
+	width: 100%;
+	display:block;
+}
+
+.xcustom-select {
+	display: flex;
+	flex-direction: column;
+	border:1px solid #cfcfcf;
+	border-radius:5px;
+	min-width:110px;
+	background-color: #fff;
+}
+
+.xcustom-select__trigger {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 4px 0 20px;
+	font-size: 16px;
+	color: #3b3b3b;
+	height: 32px;
+	cursor: pointer;
+	gap:10px;
+}
+.xcustom-select__trigger>span:first-child{
+	min-width:60px;
+}
+
+.xcustom-options {
+	position: absolute;
+	display:none;
+	top: 100%;
+	left: 0;
+	right: 0;
+	border-top: 0;
+	background: #fff;
+	transition: all 0.5s;
+	opacity: 0;
+	pointer-events: none;
+	z-index: 2;
+	border-radius:5px;
+	box-shadow:0 10px 12px -3px rgba(0,0,0,0.1);
+	margin-top:10px;
+}
+
+.xcustom-select.xopen .xcustom-options {
+	opacity: 1;
+	pointer-events: all;
+	display:block;
+}
+
+
+.custom-option {
+	position: relative;
+	display: block;
+	padding: 0 12px 0 12px;
+	font-size: 16px;
+	color: #3b3b3b;
+	line-height: 40px;
+	cursor: pointer;
+	transition: all 0.5s;
+	border-bottom:1px solid #EEEEEE;
+}
+.xcustom-options .custom-option:first-child{
+	border-radius:5px 5px 0px 0px;
+}
+.xcustom-options .custom-option:last-child{
+	border-bottom:none;
+	border-radius:0 0 8px 8px;
+}
+
+
+	.custom-option:hover {
+		cursor: pointer;
+		background-color: #9fccff;
+	}
+
+	.custom-option.selected {
+		color: #ffffff;
+		background-color: #0078ff;
+	}
+
+.arrow {
+	position: relative;
+	height: 9px;
+	width: 9px;
+}
+
+	.arrow::before,
+	.arrow::after {
+		content: "";
+		position: absolute;
+		bottom: 0px;
+		width: 0.15rem;
+		height: 100%;
+		transition: all 0.5s;
+	}
+
+	.arrow::before {
+		left: -5px;
+		transform: rotate(45deg);
+		background-color: #394a6d;
+	}
+
+	.arrow::after {
+		left: 0px;
+		transform: rotate(-45deg);
+		background-color: #394a6d;
+	}
+
+.xopen .arrow::before {
+	left: -5px;
+	transform: rotate(-45deg);
+}
+
+.xopen .arrow::after {
+	left: 0px;
+	transform: rotate(45deg);
+}

@@ -1,0 +1,68 @@
+﻿.show-date {
+    display: none;
+    position: absolute;
+    z-index: 999;
+    padding: 5px;
+    background: #ffffff
+}
+
+    .show-date input {
+        margin-bottom: 10px;
+    }
+
+
+    .show-date.checked {
+        display: block;
+    }
+
+.hidden{
+    display:none;
+}
+
+.question__content .katex-display {
+    display: inline-block;
+}
+
+#tra_loi, #dap_an {
+    clear: both;
+}
+
+/*span:not(.math-text):has(.katex) {
+    margin: 0 5px;
+}*/
+.ck-math-tex {
+    margin: 0 4px;
+}
+.lesson-mgt__grid .item-button-left .btn:last-child.btn-danger-light-2 {
+    width: 40px;
+    min-width: auto;
+    padding: 0
+}
+.head-teacher-dropdown{
+    width: 100%;
+}
+.common-filter .counting-label {
+    width: 50%;
+    height: 45px;
+    background-image: linear-gradient(90deg, #D2E7FF 48.7%, rgba(210, 231, 255, 0) 97.39%);
+    border-radius: 0px 30px 30px 0px;
+    display: inline-flex;
+    margin-top: 15px;
+}
+.common-filter .counting-label .split-line {
+    display: inline;
+    width: 10px;
+    background-color: #0078FF;
+    margin-right: 10px
+}
+    .common-filter .counting-label p {
+        transform: translate(0, 10%)
+    }
+
+/*.lesson-mgt__table .td:last-child .list-button .btn:first-child{
+    margin-right: auto;
+}*/
+
+/*.lesson-mgt__table .td:last-child .list-button .btn:only-child{
+    justify-content: flex-start;
+}*/
