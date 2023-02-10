@@ -25,19 +25,19 @@ function createEditor(editorId, type = TypeOfCk.CAU_HOI, placehoder = '', data =
                 display: false,
                 forceOutputType: 'span'
             },
-            math: {
-                engine: "katex",
-                katexRenderOptions: {
-                    throwOnError: false,
-                    output: 'html',
-                    delimiters: [
-                        { left: '$$', right: '$$', display: true },
-                        { left: '$', right: '$', display: false },
-                        { left: '\\(', right: '\\)', display: false },
-                        { left: '\\[', right: '\\]', display: true }
-                    ]
-                },
-            },
+            // math: {
+            //     engine: "katex",
+            //     katexRenderOptions: {
+            //         throwOnError: false,
+            //         output: 'html',
+            //         delimiters: [
+            //             { left: '$$', right: '$$', display: true },
+            //             { left: '$', right: '$', display: false },
+            //             { left: '\\(', right: '\\)', display: false },
+            //             { left: '\\[', right: '\\]', display: true }
+            //         ]
+            //     },
+            // },
             placeholder: placehoder,
             simpleUpload: {
                 uploadUrl: 'https://localhost:44360/images/upload1',

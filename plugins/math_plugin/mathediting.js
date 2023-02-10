@@ -63,43 +63,19 @@ export default class MathEditing extends Plugin {
 	_defineConverters() {
 		const conversion = this.editor.conversion;
 		const mathConfig = this.editor.config.get('math');
-
+		if (!mathConfig) {
+			mathConfig = {
+				engine: 'katex',
+				outputType: 'span',
+				forceOutputType: false,
+				enablePreview: true,
+				previewClassName: [],
+				popupClassName: [],
+				katexRenderOptions: Utils.getDefaultRenderOption()
+			}
+		}
 		// View -> Model
 		conversion.for('upcast')
-			// MathJax inline way (e.g. <script type="math/tex">\sqrt{\frac{a}{b}}</script>)
-			// .elementToElement({
-			// 	view: {
-			// 		name: 'script',
-			// 		attributes: {
-			// 			type: 'math/tex'
-			// 		}
-			// 	},
-			// 	model: (viewElement, { writer }) => {
-			// 		const equation = viewElement.getChild(0).data.trim();
-			// 		return writer.createElement('mathtex-inline', {
-			// 			equation,
-			// 			type: mathConfig.forceOutputType ? mathConfig.outputType : 'script',
-			// 			display: false
-			// 		});
-			// 	}
-			// })
-			// // MathJax display way (e.g. <script type="math/tex; mode=display">\sqrt{\frac{a}{b}}</script>)
-			// .elementToElement({
-			// 	view: {
-			// 		name: 'script',
-			// 		attributes: {
-			// 			type: 'math/tex; mode=display'
-			// 		}
-			// 	},
-			// 	model: (viewElement, { writer }) => {
-			// 		const equation = viewElement.getChild(0).data.trim();
-			// 		return writer.createElement('mathtex-display', {
-			// 			equation,
-			// 			type: mathConfig.forceOutputType ? mathConfig.outputType : 'script',
-			// 			display: true
-			// 		});
-			// 	}
-			// })
 			// CKEditor 5 way (e.g. <span class="math-tex">\( \sqrt{\frac{a}{b}} \)</span>)
 			.elementToElement({
 				view: {
@@ -154,8 +130,6 @@ export default class MathEditing extends Plugin {
 		function createMathtexEditingView(modelItem, writer) {
 			const equation = modelItem.getAttribute('equation');
 			const display = modelItem.getAttribute('display');
-			const isNormalText = modelItem.getAttribute('isNormalText');
-
 			const styles = 'user-select: none; ' + (display ? '' : 'display: inline-block;');
 			const classes = 'ck-math-tex ' + (display ? 'ck-math-tex-display' : 'ck-math-tex-inline');
 

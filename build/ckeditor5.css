@@ -1,6 +1,6 @@
 .ck-editor__editable_inline {
     min-height: 200px;
-    max-height:600px;
+    max-height: 600px;
 }
 
 .ck-widget {
@@ -117,12 +117,6 @@
 }
 
 
-.number-options > span > span {
-   /* display: flex;
-    align-items: center;
-    border-bottom: 1px solid #e7e7e7;
-    padding: 8px 12px;*/
-}
 
 :root {
     --t-control-bg-color-1: #FFDCA9;
