@@ -3,11 +3,11 @@ import Widget from '@ckeditor/ckeditor5-widget/src/widget';
 
 import MathUI from './mathui';
 import MathEditing from './mathediting';
+import AutoformatMath from './autoformatmath';
 import AutoMath from './automath';
-
 export default class Math extends Plugin {
 	static get requires() {
-		return [ MathEditing, MathUI, AutoMath, Widget ];
+		return [ MathEditing, MathUI, AutoformatMath,AutoMath, Widget ];
 	}
 
 	static get pluginName() {

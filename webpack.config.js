@@ -54,21 +54,29 @@ module.exports = {
     module: {
         rules: [
             // {
-            //     test: /\.s[ac]ss$/i,
-            //     use: [
-            //         MiniCssExtractPlugin.loader,
-            //         // Compiles Sass to CSS
-            //         "sass-loader",
-            //         // Creates `style` nodes from JS strings
-            //         "style-loader",
-            //         // Translates CSS into CommonJS
-            //         "css-loader",
-            //     ],
-            // },
-            // {
-            //     test: /\.css$/,
-            //     use: [MiniCssExtractPlugin.loader, "css-loader"],
-            // },
+			// 	test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
+			// 	use: ["raw-loader"],
+			// },
+			// {
+			// 	test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
+			// 	use: [
+			// 		MiniCssExtractPlugin.loader,
+			// 		"css-loader",
+			// 		{
+			// 			loader: "postcss-loader",
+			// 			options: {
+			// 				postcssOptions: styles.getPostCssConfig({
+			// 					themeImporter: {
+			// 						themePath: require.resolve(
+			// 							"@ckeditor/ckeditor5-theme-lark"
+			// 						),
+			// 					},
+			// 					minify: true,
+			// 				}),
+			// 			},
+			// 		},
+			// 	],
+			// },
             {
                 test: /\.svg$/,
                 use: ['raw-loader']
@@ -102,8 +110,8 @@ module.exports = {
         ]
     },
     // Useful for debugging.
-    //devtool: 'source-map',
+    devtool: 'source-map',
 
     // By default webpack logs warnings if the bundle is bigger than 200kb.
-    //performance: { hints: false }
+    performance: { hints: false }
 };

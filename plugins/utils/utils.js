@@ -132,8 +132,6 @@ class Utils {
     }
 
     //#region For math plugin
-
-
     static getSelectedMathModelWidget(selection) {
         const selectedElement = selection.getSelectedElement();
 

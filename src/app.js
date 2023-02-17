@@ -14,6 +14,7 @@ import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
 import ImageResizeEditing from '@ckeditor/ckeditor5-image/src/imageresize/imageresizeediting';
 import ImageResizeHandles from '@ckeditor/ckeditor5-image/src/imageresize/imageresizehandles';
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
+import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
 import { ControlType, BackgroundColorClass } from '../enums/enums';
@@ -21,7 +22,7 @@ import Control from '../plugins/control_plugin/control';
 import Math from '../plugins/math_plugin/math';
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
 // import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
-// import Link from '@ckeditor/ckeditor5-link/src/link.js';
+//import Link from '@ckeditor/ckeditor5-link/src/link.js';
 // import CKFinderUploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter.js';
 class XMEditor extends ClassicEditor {
     static ControlType = ControlType;
@@ -36,7 +37,7 @@ XMEditor.builtinPlugins = [
     Alignment,
     GeneralHtmlSupport,
     Control, Math,
-    Image, ImageResizeEditing, ImageResizeHandles, ImageResize,
+    Image, ImageResizeEditing, ImageResizeHandles, ImageResize,ImageToolbar,
     SimpleUploadAdapter, ImageUpload, ImageInsert,
     List, ListProperties,
     SourceEditing,
@@ -53,13 +54,14 @@ XMEditor.defaultConfig = {
             classes: true,
             styles: true
         }],
-        disallow: [ /* HTML features to disallow */]
+        disallow: [
+
+        ]
     },
     toolbar: {
         items: [
             'heading', '|',
-            'bold', 'italic', '|',
-            'bulletedList', 'numberedList', '|',
+            'bold', 'italic', 'bulletedList', 'numberedList', '|',
             'alignment', '|',
             'resizeImage', 'insertImage', '|',
             'math', '|',

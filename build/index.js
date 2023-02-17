@@ -118,6 +118,16 @@ function createEditor(editorId, type = TypeOfCk.CAU_HOI, placehoder = '', data =
 $(document).ready(function (e) {
     editors = new Map();
     init();
+    $('#btn-test').click(function (e) {
+        e.preventDefault();
+        const editorId = $(this).parents('.question-group').attr('id');
+        const id = editors.get(editorId).id;
+        localStorage.setItem(id, '1');
+    })
+    // $('#btn-test').click(function(e){
+    //     e.preventDefault();
+    //     e.originalEvent.dataTransfer.setData('modeKatex','1');
+    // })
 })
 
 function init() {
@@ -129,9 +139,9 @@ function init() {
     const editorSolve = eSolveTmpl.render({ editorId: 'editor-loi-giai' });
     $('#box-editor-solve').append(editorSolve);
 
-    let content = `<span class=\"t-control t-control-bg-color_4\" style=\"display:inline-block;\" data-type=\"LUA_CHON\" data-id=\"1675648575333\"><span class=\"xcustom-select-wrapper\" onclick=\"xSelectOptionCustom(this)\"><span class=\"xcustom-select\"><input type=\"hidden\" name=\"ANS_LUA_CHON_1675648575333\" value=\"\"><span class=\"xcustom-select__trigger\"><span>Chọn</span><span class=\"arrow\">&nbsp;</span></span><span class=\"xcustom-options\"><span class=\"custom-option\" value=\"opt_0_1675648575333\" data-equation=\"$1$\"><span class=\"katex\"><span class=\"katex-html\" aria-hidden=\"true\"><span class=\"base\"><span class=\"strut\" style=\"height: 0.6444em;\"></span><span class=\"mord\">1</span></span></span></span></span><span class=\"custom-option\" value=\"opt_1_1675648575333\" data-equation=\"2\">2</span><span class=\"custom-option\" value=\"opt_2_1675648575333\" data-equation=\"34\">34</span></span></span></span></span>`
+    let content = `<div class=\"olt\">Bạn hãy chọn đáp án đúng để điền vào ô trống.</div><div class=\"olt\">Hình vuông có [KATEX]4[/KATEX] góc <div class=\"t-control t-control-bg-color_0\" data-type=\"LUA_CHON\" data-id=\"0\"><div class=\"xcustom-select-wrapper\" onclick=\"xSelectOptionCustom(this)\"><div class=\"xcustom-select\"><input type=\"hidden\" name=\"ANS_LUA_CHON_0\" value=\"\"><div class=\"xcustom-select__trigger\"><span>Chọn</span><div class=\"arrow\">&nbsp;</div></div><div class=\"xcustom-options\"><span class=\"custom-option\" value=\"Chọn\" data-equation=\"Chọn\">Chọn</span><span class=\"custom-option\" value=\"547e9479-556f-44a0-b67f-5c6cfc783f9c\" data-equation=\"không vuông\">không vuông</span><span class=\"custom-option\" value=\"03c38743-9f79-46b2-bf15-66059480581f\" data-equation=\"vuông\">vuông</span></div></div></div></div>.</div>`
 
-    content = '';
+    //content = '';
     content = content.replace(/(?<!data-equation=\")\[KATEX\](.+?)\[\/KATEX\]/gi, '<span class="math-tex" data-value="$1"></span>')
     content = content.replace(/(?<!data-equation=\")\${1,}(.+?)\${1,}/gi, '<span class="math-tex" data-value="$1"></span>')
     createEditor('editor-cau-hoi', TypeOfCk.CAU_HOI, 'Nhập nội dung câu hỏi', content)
@@ -225,25 +235,25 @@ function bindActionEditor() {
                 let storageControl = map.find(i => i.type == TYPE.LUA_CHON)
                 if (storageControl && storageControl.values) {
                     ;
-                    evt.dataTransfer.setData('control', JSON.stringify({ id: sharedId, values: storageControl.values, type: TYPE.LUA_CHON }))
+                    evt.dataTransfer.setData('xmcontrol', JSON.stringify({ id: sharedId, values: storageControl.values, type: TYPE.LUA_CHON }))
                 } else {
-                    evt.dataTransfer.setData('control', JSON.stringify({ id: sharedId, values: [], type: TYPE.LUA_CHON }))
+                    evt.dataTransfer.setData('xmcontrol', JSON.stringify({ id: sharedId, values: [], type: TYPE.LUA_CHON }))
                 }
             } else if (controlType === 'nhap') {
-                evt.dataTransfer.setData('control', JSON.stringify({ id: sharedId, values: [], type: TYPE.NHAP }))
+                evt.dataTransfer.setData('xmcontrol', JSON.stringify({ id: sharedId, values: [], type: TYPE.NHAP }))
             } else if (controlType === 'phan-so') {
                 let storageControl = map.find(i => i.type == TYPE.PHAN_SO)
                 if (storageControl && storageControl.values) {
-                    evt.dataTransfer.setData('control', JSON.stringify({ id: sharedId, values: storageControl.values, type: TYPE.PHAN_SO }))
+                    evt.dataTransfer.setData('xmcontrol', JSON.stringify({ id: sharedId, values: storageControl.values, type: TYPE.PHAN_SO }))
                 } else {
-                    evt.dataTransfer.setData('control', JSON.stringify({ id: sharedId, values: { tuSo: '', mauSo: '' }, type: TYPE.PHAN_SO }))
+                    evt.dataTransfer.setData('xmcontrol', JSON.stringify({ id: sharedId, values: { tuSo: '', mauSo: '' }, type: TYPE.PHAN_SO }))
                 }
             } else if (controlType === 'phep-chia') {
                 let storageControl = map.find(i => i.type == TYPE.PHEP_CHIA)
                 if (storageControl && storageControl.values) {
-                    evt.dataTransfer.setData('control', JSON.stringify({ id: sharedId, values: storageControl.values, type: TYPE.PHEP_CHIA }))
+                    evt.dataTransfer.setData('xmcontrol', JSON.stringify({ id: sharedId, values: storageControl.values, type: TYPE.PHEP_CHIA }))
                 } else {
-                    evt.dataTransfer.setData('control', JSON.stringify({ id: sharedId, values: { soBiChia: '', soChia: '', soDu: '', thuongSo: '' }, type: TYPE.PHEP_CHIA }))
+                    evt.dataTransfer.setData('xmcontrol', JSON.stringify({ id: sharedId, values: { soBiChia: '', soChia: '', soDu: '', thuongSo: '' }, type: TYPE.PHEP_CHIA }))
                 }
             } else {
                 console.error('Unsupported control')

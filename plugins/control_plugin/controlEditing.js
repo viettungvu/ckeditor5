@@ -52,7 +52,7 @@ export default class ControlEditing extends Plugin {
                     classes: ['t-control']
                 },
                 model: (viewElement, { writer }) => {
-                    return writer.createElement('xcontrol-inline', this.getControlDataFromViewElement(viewElement));
+                    return writer.createElement('xcontrol-inline', getControlDataFromViewElement(viewElement));
                 },
                 converterPriority: 'high'
             })
@@ -100,82 +100,80 @@ export default class ControlEditing extends Plugin {
             if (data.content) {
                 return;
             }
-            const controlData = data.dataTransfer.getData('control');
-            if (!controlData) {
-                return;
-            }
-            // Use JSON data encoded in the DataTransfer.
-            const control = JSON.parse(controlData);
-            // Translate the h-card data to a view fragment.
-            const writer = new UpcastWriter(viewDocument);
-            const fragment = writer.createDocumentFragment();
-            try {
-                const sharedId = control.id == '' ? this._getControlIdAsEpoch() : control.id;
-                if (control.type === ControlType.LUA_CHON) {
-                    let optionsElement = null;
-                    if (control.values && control.values.length > 0) {
-                        optionsElement = control.values.map((v, index) =>
-                            writer.createElement('span', { value: `opt_${index}_${sharedId}`, 'data-equation': v, class: 'custom-option' }, v)
-                        );
-                    }
-                    else {
-                        optionsElement = writer.createElement('span', { value: `opt_0_${sharedId}`, 'data-equation': 'null', class: 'custom-option' }, 'null')
-                    }
-                    writer.appendChild(
-                        writer.createElement('span', { class: 't-control', 'data-type': control.type, 'data-id': sharedId },
-                            writer.createElement('span', { class: 'xcustom-select-wrapper' }, [
-                                writer.createElement('span', { class: 'xcustom-select' }, [
-                                    writer.createElement('input', { type: 'hidden' }),
-                                    writer.createElement('span', { class: 'xcustom-select__trigger' }),
-                                    writer.createElement('span', { class: 'xcustom-options' }, optionsElement)
-                                ])
-                            ]
-                            )),
-                        fragment);
-
-                } else if (control.type === ControlType.NHAP) {
-                    writer.appendChild(
-                        writer.createElement('span', { class: 't-control', 'data-type': control.type, 'data-id': sharedId }, []),
-                        fragment
-                    );
-                } else if (control.type === ControlType.PHEP_CHIA) {
-                    if (control.values) {
-                        var firstChilds = [
-                            writer.createElement('span', { class: 'so-bi-chia', value: control.values.soBiChia || '' }),
-                            writer.createElement('span', { class: 'so-du', value: control.values.soDu || '' })
-                        ];
-                        var secondChilds = [
-                            writer.createElement('span', { class: 'so-chia', value: control.values.soChia || '' }),
-                            writer.createElement('span', { class: 'so-thuong', value: control.values.thuongSo || '' })
-                        ];
-
+            const xmcontrol = data.dataTransfer.getData('xmcontrol');
+            if (xmcontrol) {
+                // Use JSON data encoded in the DataTransfer.
+                const controlData = JSON.parse(xmcontrol);
+                // Translate the h-card data to a view fragment.
+                const writer = new UpcastWriter(viewDocument);
+                const fragment = writer.createDocumentFragment();
+                try {
+                    const sharedId = controlData.id == '' ? this._getControlIdAsEpoch() : controlData.id;
+                    if (controlData.type === ControlType.LUA_CHON) {
+                        let optionsElement = null;
+                        if (controlData.values && controlData.values.length > 0) {
+                            optionsElement = controlData.values.map((v, index) =>
+                                writer.createElement('span', { value: `opt_${index}_${sharedId}`, 'data-equation': v, class: 'custom-option' }, v)
+                            );
+                        }
+                        else {
+                            optionsElement = writer.createElement('span', { value: `opt_0_${sharedId}`, 'data-equation': 'null', class: 'custom-option' }, 'null')
+                        }
                         writer.appendChild(
-                            writer.createElement('span', { class: 't-control', 'data-type': control.type, 'data-id': sharedId }, writer.createElement('span', { class: 'division' }, [
-                                writer.createElement('span', { class: 'division__left' }, firstChilds),
-                                writer.createElement('span', { class: 'division__right' }, secondChilds),
-                            ])),
+                            writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId },
+                                writer.createElement('span', { class: 'xcustom-select-wrapper' }, [
+                                    writer.createElement('span', { class: 'xcustom-select' }, [
+                                        writer.createElement('input', { type: 'hidden' }),
+                                        writer.createElement('span', { class: 'xcustom-select__trigger' }),
+                                        writer.createElement('span', { class: 'xcustom-options' }, optionsElement)
+                                    ])
+                                ]
+                                )),
+                            fragment);
+
+                    } else if (controlData.type === ControlType.NHAP) {
+                        writer.appendChild(
+                            writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId }, []),
                             fragment
                         );
+                    } else if (controlData.type === ControlType.PHEP_CHIA) {
+                        if (controlData.values) {
+                            var firstChilds = [
+                                writer.createElement('span', { class: 'so-bi-chia', value: controlData.values.soBiChia || '' }),
+                                writer.createElement('span', { class: 'so-du', value: controlData.values.soDu || '' })
+                            ];
+                            var secondChilds = [
+                                writer.createElement('span', { class: 'so-chia', value: controlData.values.soChia || '' }),
+                                writer.createElement('span', { class: 'so-thuong', value: controlData.values.thuongSo || '' })
+                            ];
+
+                            writer.appendChild(
+                                writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId }, writer.createElement('span', { class: 'division' }, [
+                                    writer.createElement('span', { class: 'division__left' }, firstChilds),
+                                    writer.createElement('span', { class: 'division__right' }, secondChilds),
+                                ])),
+                                fragment
+                            );
+                        }
+                    } else if (controlData.type === ControlType.PHAN_SO) {
+                        if (controlData.values) {
+                            var childrenElements = [
+                                writer.createElement('span', { class: 'tu-so', value: controlData.values.tuSo }),
+                                writer.createElement('span', { class: 'mau-so', value: controlData.values.mauSo }),
+                            ];
+                            writer.appendChild(
+                                writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId }, writer.createElement('span', { class: 'frac frac-input' }, childrenElements)),
+                                fragment
+                            );
+                        }
+                    } else {
+                        console.warn('Unsupported control');
                     }
-                } else if (control.type === ControlType.PHAN_SO) {
-                    if (control.values) {
-                        var childrenElements = [
-                            writer.createElement('span', { class: 'tu-so', value: control.values.tuSo }),
-                            writer.createElement('span', { class: 'mau-so', value: control.values.mauSo }),
-                        ];
-                        writer.appendChild(
-                            writer.createElement('span', { class: 't-control', 'data-type': control.type, 'data-id': sharedId }, writer.createElement('span', { class: 'frac frac-input' }, childrenElements)),
-                            fragment
-                        );
-                    }
-                } else {
-                    console.warn('Unsupported control');
+                } catch (error) {
+                    console.error('Error from _defineClipboard: ' + error);
                 }
-            } catch (error) {
-                console.error('Error from _defineClipboard: ' + error);
+                data.content = fragment;
             }
-            // Provide the content to the clipboard pipeline for further processing.
-            data.content = fragment;
         });
 
         // Processing copied, pasted or dragged content.
@@ -185,10 +183,13 @@ export default class ControlEditing extends Plugin {
             }
 
             const viewElement = data.content.getChild(0);
-            if ((viewElement.is('element', 'span') || viewElement.is('element', 'div')) && viewElement.hasClass('t-control')) {
-                data.dataTransfer.setData('control', JSON.stringify(this.getControlDataFromViewElement(viewElement)));
+            if ((viewElement.is('element', 'span') || viewElement.is('element', 'div'))) {
+                if (viewElement.hasClass('t-control')) {
+                    data.dataTransfer.setData('xmcontrol', JSON.stringify(this.getControlDataFromViewElement(viewElement)));
+                }
             }
         });
+        
     }
     _getControlIdAsEpoch() {
         return new Date().getTime();
