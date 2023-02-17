@@ -7,6 +7,8 @@ import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import ListProperties from '@ckeditor/ckeditor5-list/src/listproperties';
+import DocumentList from '@ckeditor/ckeditor5-list/src/documentlist';
+import DocumentListProperties from '@ckeditor/ckeditor5-list/src/documentlistproperties';
 import GeneralHtmlSupport from '@ckeditor/ckeditor5-html-support/src/generalhtmlsupport';
 import Image from '@ckeditor/ckeditor5-image/src/image';
 import ImageInsert from '@ckeditor/ckeditor5-image/src/imageinsert';
@@ -16,14 +18,12 @@ import ImageResizeHandles from '@ckeditor/ckeditor5-image/src/imageresize/imager
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting';
+//import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
 import { ControlType, BackgroundColorClass } from '../enums/enums';
 import Control from '../plugins/control_plugin/control';
 import Math from '../plugins/math_plugin/math';
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
-// import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
-//import Link from '@ckeditor/ckeditor5-link/src/link.js';
-// import CKFinderUploadAdapter from '@ckeditor/ckeditor5-adapter-ckfinder/src/uploadadapter.js';
 class XMEditor extends ClassicEditor {
     static ControlType = ControlType;
     static BackgroundColorClass = BackgroundColorClass;
@@ -41,8 +41,6 @@ XMEditor.builtinPlugins = [
     SimpleUploadAdapter, ImageUpload, ImageInsert,
     List, ListProperties,
     SourceEditing,
-    //CKFinder, Link, CKFinderUploadAdapter,
-    //Placeholder
 ];
 // Editor configuration.
 XMEditor.defaultConfig = {
@@ -63,7 +61,7 @@ XMEditor.defaultConfig = {
             'heading', '|',
             'bold', 'italic', 'bulletedList', 'numberedList', '|',
             'alignment', '|',
-            'resizeImage', 'insertImage', '|',
+            'resizeImage', 'insertImage', 'ckfinder', '|',
             'math', '|',
             'sourceEditing', '|',
             'undo', 'redo', '|',
@@ -126,13 +124,5 @@ XMEditor.defaultConfig = {
             type: 'inline'
         }
     },
-    // ckfinder: {
-    //     // Open the file manager in the pop-up window.
-    //     openerMethod: 'modal',
-    //     options: {
-    //         resourceType: 'Images'
-    //     },
-    //     uploadUrl: 'https://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images&responseType=json'
-    // }
 }
 export default XMEditor;
