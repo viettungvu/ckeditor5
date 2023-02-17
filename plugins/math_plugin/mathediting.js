@@ -21,7 +21,7 @@ export default class MathEditing extends Plugin {
 
 		this._defineSchema();
 		this._defineConverters();
-		this._defineClipboardInputOutput(editor)
+		this._defineClipboardInputOutput();
 		editor.editing.mapper.on(
 			'viewToModelPosition',
 			viewToModelPositionOutsideModelElement(editor.model, viewElement => viewElement.hasClass('math'))
@@ -67,16 +67,14 @@ export default class MathEditing extends Plugin {
 		const mathConfig = this.editor.config.get('math');
 
 		// View -> Model
-		// CKEditor 5 way (e.g. <span class="math-tex">\( \sqrt{\frac{a}{b}} \)</span>)
 		conversion.for('upcast')
-			// CKEditor 5 way (e.g. <span class="math-tex">\( \sqrt{\frac{a}{b}} \)</span>)
 			.elementToElement({
 				view: {
 					name: 'span',
 					classes: ['math-tex']
 				},
 				model: (viewElement, { writer }) => {
-					return writer.createElement('mathtex-inline', getMathtexDataFromViewElement(viewElement, writer))
+					return writer.createElement('mathtex-inline', this.getMathtexDataFromViewElement(viewElement))
 				}
 			})
 			.elementToElement({
@@ -99,12 +97,12 @@ export default class MathEditing extends Plugin {
 			.elementToElement({
 				model: 'mathtex-inline',
 				view: (modelItem, { writer }) => {
-					return toWidget(createMathtexEditingView(modelItem, writer), writer, 'span');
+					return toWidget(this.createMathtexEditingView(modelItem, writer), writer, 'span');
 				}
 			}).elementToElement({
 				model: 'mathtex-display',
 				view: (modelItem, { writer }) => {
-					return toWidget(createMathtexEditingView(modelItem, writer), writer, 'div');
+					return toWidget(this.createMathtexEditingView(modelItem, writer), writer, 'div');
 				}
 			});
 
@@ -112,51 +110,104 @@ export default class MathEditing extends Plugin {
 		conversion.for('dataDowncast')
 			.elementToElement({
 				model: 'mathtex-inline',
-				view: (modelItem, { writer: viewWriter }) => createMathtexEditingView(modelItem, viewWriter)
+				view: (modelItem, { writer: viewWriter }) => this.createMathtexEditingView(modelItem, viewWriter)
 			})
 			.elementToElement({
 				model: 'mathtex-display',
-				view: (modelItem, { writer: viewWriter }) => createMathtexEditingView(modelItem, viewWriter)
+				view: (modelItem, { writer: viewWriter }) => this.createMathtexEditingView(modelItem, viewWriter)
 			});
 
-		// Create view for editor
-		function createMathtexEditingView(modelItem, writer) {
-			const equation = modelItem.getAttribute('equation');
-			const display = modelItem.getAttribute('display');
-			const styles = 'user-select: none; ' + (display ? '' : 'display: inline-block;');
-			const classes = 'ck-math-tex ' + (display ? 'ck-math-tex-display' : 'ck-math-tex-inline');
 
-			const mathtexView = writer.createContainerElement(display ? 'div' : 'span', {
-				style: styles,
-				class: classes,
-			}, writer.createRawElement('span', { class: 'math-tex', 'data-value': equation }, function (domElement) {
-				Utils.renderEquation(equation, domElement, mathConfig.engine, mathConfig.lazyLoad, display, false, mathConfig.previewClassName,
-					null, mathConfig.katexRenderOptions);
-				return domElement;
-			}));
-			return mathtexView;
+	}
+	// Create view for editor
+	createMathtexEditingView(modelItem, writer) {
+		const equation = modelItem.getAttribute('equation');
+		const display = modelItem.getAttribute('display');
+		const styles = 'user-select: none; ' + (display ? '' : 'display: inline-block;');
+		const classes = 'ck-math-tex ' + (display ? 'ck-math-tex-display' : 'ck-math-tex-inline');
+		const mathConfig = this.editor.config.get('math');
+		const mathtexView = writer.createContainerElement(display ? 'div' : 'span', {
+			style: styles,
+			class: classes,
+		}, writer.createRawElement('span', { class: 'math-tex', 'data-value': equation }, function (domElement) {
+			Utils.renderEquation(equation, domElement, mathConfig.engine, mathConfig.lazyLoad, display, false, mathConfig.previewClassName,
+				null, mathConfig.katexRenderOptions);
+			return domElement;
+		}));
+		return mathtexView;
+	}
+	getMathtexDataFromViewElement(viewElement) {
+		try {
+			const mathConfig = this.editor.config.get('math');
+			const equation = viewElement?.getAttribute('data-value').trim();
+			return Object.assign(Utils.extractDelimiters(equation, mathConfig.katexRenderOptions.delimiters), {
+				type: mathConfig.forceOutputType ? mathConfig.outputType : 'span'
+			});
+		} catch (error) {
+			console.error(error.stack);
 		}
-		function getMathtexDataFromViewElement(viewElement) {
-			try {
-				let mathConfig = this.editor.config.get('math');
-				if (!mathConfig) {
-					mathConfig = {
-						engine: 'katex',
-						outputType: 'span',
-						forceOutputType: false,
-						enablePreview: true,
-						previewClassName: [],
-						popupClassName: [],
-						katexRenderOptions: Utils.getDefaultRenderOption()
-					}
-				}
-				const equation = viewElement?.getAttribute('data-value').trim();
-				return Object.assign(Utils.extractDelimiters(equation, mathConfig.katexRenderOptions.delimiters), {
-					type: mathConfig.forceOutputType ? mathConfig.outputType : 'span'
-				});
-			} catch (error) {
-				console.error(error.stack);
+	}
+
+
+	// Integration with the clipboard pipeline.
+	_defineClipboardInputOutput() {
+		const view = this.editor.editing.view;
+		const viewDocument = view.document;
+
+		// Processing pasted or dropped content.
+		this.listenTo(viewDocument, 'clipboardInput', (evt, data) => {
+			// The clipboard content was already processed by the listener on the higher priority
+			// (for example while pasting into the code block).
+			if (data.content) {
+				return;
 			}
-		}
+			const xmequation = data.dataTransfer.getData('xmequation');
+			if (xmequation) {
+				// Use JSON data encoded in the DataTransfer.
+				const equationData = JSON.parse(xmequation);
+				// Translate the h-card data to a view fragment.
+				const writer = new UpcastWriter(viewDocument);
+				const fragment = writer.createDocumentFragment();
+				try {
+					const equation = data.content.getChild(0).data;
+					const modeKatex = localStorage.getItem(editor.id);
+					const writer = new UpcastWriter(viewDocument);
+					if (typeof modeKatex == typeof undefined || modeKatex != Constants.ModeKatex.PHUC_TAP) {
+						const fragment = writer.createDocumentFragment();
+						writer.appendChild(
+							writer.createText(equation),
+							fragment
+						);
+						data.content = fragment;
+					}
+					else {
+						const fragment = writer.createDocumentFragment();
+						writer.appendChild(
+							writer.createElement('span', { class: 'math-tex', 'display': false, 'data-value': equation }),
+							fragment
+						);
+						data.content = fragment;
+						localStorage.removeItem(editor.id);
+					}
+				} catch (error) {
+					console.error('Error from _defineClipboard: ' + error);
+				}
+				data.content = fragment;
+			}
+		});
+
+		// Processing copied, pasted or dragged content.
+		this.listenTo(document, 'clipboardOutput', (evt, data) => {
+			if (data.content.childCount != 1) {
+				return;
+			}
+
+			const viewElement = data.content.getChild(0);
+			if ((viewElement.is('element', 'span') || viewElement.is('element', 'div'))) {
+				if (viewElement.hasClass('math-tex')) {
+					data.dataTransfer.setData('xmequation', JSON.stringify(this.getMathtexDataFromViewElement(viewElement)));
+				}
+			}
+		});
 	}
 }

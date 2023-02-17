@@ -23,175 +23,7 @@ export default class ControlEditing extends Plugin {
         });
 
     }
-    _defineSchema() {
-        const schema = this.editor.model.schema;
-        //#region Define Schema Widget Control
-        schema.register('xcontrol-inline', {
-            isInline: true,
-            isObject: true,
-            allowWhere: '$text',
-            allowAttributes: ['id', 'value', 'type', 'class']
-        });
-        schema.register('xcontrol', {
-            isInline: false,
-            isObject: true,
-            allowWhere: '$block',
-            allowAttributes: ['id', 'value', 'type', 'class']
-        });
-        //#endregion
-    }
-    _defineConverters() {
-        const conversion = this.editor.conversion;
-
-        //#region Convert Widget Control
-        // Data-to-model conversion.
-        conversion.for('upcast')
-            .elementToElement({
-                view: {
-                    name: 'span',
-                    classes: ['t-control']
-                },
-                model: (viewElement, { writer }) => {
-                    return writer.createElement('xcontrol-inline', getControlDataFromViewElement(viewElement));
-                },
-                converterPriority: 'high'
-            })
-        conversion.for('upcast')
-            .elementToElement({
-                view: {
-                    name: 'div',
-                    classes: ['t-control']
-                },
-                model: (viewElement, { writer }) => {
-                    return writer.createElement('xcontrol', this.getControlDataFromViewElement(viewElement));
-                },
-            })
-
-        // Model-to-data conversion.
-        conversion.for('dataDowncast').elementToElement({
-            model: 'xcontrol-inline',
-            view: (modelItem, { writer: viewWriter }) => this.createControlView(modelItem, viewWriter)
-        })
-            .elementToElement({
-                model: 'xcontrol',
-                view: (modelItem, { writer: viewWriter }) => this.createControlView(modelItem, viewWriter)
-            })
-        // Model-to-view conversion.
-        conversion.for('editingDowncast').elementToElement({
-            model: 'xcontrol-inline',
-            view: (modelItem, { writer: viewWriter }) => toWidget(this.createControlView(modelItem, viewWriter), viewWriter)
-        }).elementToElement({
-            model: 'xcontrol',
-            view: (modelItem, { writer: viewWriter }) => toWidget(this.createControlView(modelItem, viewWriter), viewWriter)
-        });
-
-        //#endregion
-
-    }
-    // Integration with the clipboard pipeline.
-    _defineClipboardInputOutput() {
-        const view = this.editor.editing.view;
-        const viewDocument = view.document;
-
-        // Processing pasted or dropped content.
-        this.listenTo(viewDocument, 'clipboardInput', (evt, data) => {
-            // The clipboard content was already processed by the listener on the higher priority
-            // (for example while pasting into the code block).
-            if (data.content) {
-                return;
-            }
-            const xmcontrol = data.dataTransfer.getData('xmcontrol');
-            if (xmcontrol) {
-                // Use JSON data encoded in the DataTransfer.
-                const controlData = JSON.parse(xmcontrol);
-                // Translate the h-card data to a view fragment.
-                const writer = new UpcastWriter(viewDocument);
-                const fragment = writer.createDocumentFragment();
-                try {
-                    const sharedId = controlData.id == '' ? this._getControlIdAsEpoch() : controlData.id;
-                    if (controlData.type === ControlType.LUA_CHON) {
-                        let optionsElement = null;
-                        if (controlData.values && controlData.values.length > 0) {
-                            optionsElement = controlData.values.map((v, index) =>
-                                writer.createElement('span', { value: `opt_${index}_${sharedId}`, 'data-equation': v, class: 'custom-option' }, v)
-                            );
-                        }
-                        else {
-                            optionsElement = writer.createElement('span', { value: `opt_0_${sharedId}`, 'data-equation': 'null', class: 'custom-option' }, 'null')
-                        }
-                        writer.appendChild(
-                            writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId },
-                                writer.createElement('span', { class: 'xcustom-select-wrapper' }, [
-                                    writer.createElement('span', { class: 'xcustom-select' }, [
-                                        writer.createElement('input', { type: 'hidden' }),
-                                        writer.createElement('span', { class: 'xcustom-select__trigger' }),
-                                        writer.createElement('span', { class: 'xcustom-options' }, optionsElement)
-                                    ])
-                                ]
-                                )),
-                            fragment);
-
-                    } else if (controlData.type === ControlType.NHAP) {
-                        writer.appendChild(
-                            writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId }, []),
-                            fragment
-                        );
-                    } else if (controlData.type === ControlType.PHEP_CHIA) {
-                        if (controlData.values) {
-                            var firstChilds = [
-                                writer.createElement('span', { class: 'so-bi-chia', value: controlData.values.soBiChia || '' }),
-                                writer.createElement('span', { class: 'so-du', value: controlData.values.soDu || '' })
-                            ];
-                            var secondChilds = [
-                                writer.createElement('span', { class: 'so-chia', value: controlData.values.soChia || '' }),
-                                writer.createElement('span', { class: 'so-thuong', value: controlData.values.thuongSo || '' })
-                            ];
-
-                            writer.appendChild(
-                                writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId }, writer.createElement('span', { class: 'division' }, [
-                                    writer.createElement('span', { class: 'division__left' }, firstChilds),
-                                    writer.createElement('span', { class: 'division__right' }, secondChilds),
-                                ])),
-                                fragment
-                            );
-                        }
-                    } else if (controlData.type === ControlType.PHAN_SO) {
-                        if (controlData.values) {
-                            var childrenElements = [
-                                writer.createElement('span', { class: 'tu-so', value: controlData.values.tuSo }),
-                                writer.createElement('span', { class: 'mau-so', value: controlData.values.mauSo }),
-                            ];
-                            writer.appendChild(
-                                writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId }, writer.createElement('span', { class: 'frac frac-input' }, childrenElements)),
-                                fragment
-                            );
-                        }
-                    } else {
-                        console.warn('Unsupported control');
-                    }
-                } catch (error) {
-                    console.error('Error from _defineClipboard: ' + error);
-                }
-                data.content = fragment;
-            }
-        });
-
-        // Processing copied, pasted or dragged content.
-        this.listenTo(document, 'clipboardOutput', (evt, data) => {
-            if (data.content.childCount != 1) {
-                return;
-            }
-
-            const viewElement = data.content.getChild(0);
-            if ((viewElement.is('element', 'span') || viewElement.is('element', 'div'))) {
-                if (viewElement.hasClass('t-control')) {
-                    data.dataTransfer.setData('xmcontrol', JSON.stringify(this.getControlDataFromViewElement(viewElement)));
-                }
-            }
-        });
-        
-    }
-    _getControlIdAsEpoch() {
+    getControlIdAsEpoch() {
         return new Date().getTime();
     }
     createControlView(modelItem, viewWriter) {
@@ -321,7 +153,7 @@ export default class ControlEditing extends Plugin {
     getControlDataFromViewElement(viewElement) {
         if (viewElement != null) {
             try {
-                let controlId = viewElement.getAttribute('data-id') ? viewElement.getAttribute('data-id') : _getControlIdAsEpoch();
+                let controlId = viewElement.getAttribute('data-id') ? viewElement.getAttribute('data-id') : getControlIdAsEpoch();
                 let children = Array.from(viewElement.getChildren());
                 let controlType = viewElement.getAttribute('data-type');
                 let elementClasses = Array.from(viewElement.getClassNames());
@@ -426,5 +258,201 @@ export default class ControlEditing extends Plugin {
             type: 'unknow'
         }
     }
+    _defineSchema() {
+        const schema = this.editor.model.schema;
+        //#region Define Schema Widget Control
+        schema.register('xcontrol-inline', {
+            isInline: true,
+            isObject: true,
+            allowWhere: '$text',
+            allowAttributes: ['id', 'value', 'type', 'class']
+        });
+        schema.register('xcontrol', {
+            isInline: false,
+            isObject: true,
+            allowWhere: '$block',
+            allowAttributes: ['id', 'value', 'type', 'class']
+        });
+        //#endregion
+    }
+    _defineConverters() {
+        const conversion = this.editor.conversion;
+
+        //#region Convert Widget Control
+        // Data-to-model conversion.
+        conversion.for('upcast')
+            .elementToElement({
+                view: {
+                    name: 'span',
+                    classes: ['t-control']
+                },
+                model: (viewElement, { writer }) => {
+                    return writer.createElement('xcontrol-inline',this.getControlDataFromViewElement(viewElement));
+                },
+                converterPriority: 'high'
+            })
+        conversion.for('upcast')
+            .elementToElement({
+                view: {
+                    name: 'div',
+                    classes: ['t-control']
+                },
+                model: (viewElement, { writer }) => {
+                    return writer.createElement('xcontrol', this.getControlDataFromViewElement(viewElement));
+                },
+            })
+
+        // Model-to-data conversion.
+        conversion.for('dataDowncast').elementToElement({
+            model: 'xcontrol-inline',
+            view: (modelItem, { writer: viewWriter }) => this.createControlView(modelItem, viewWriter)
+        })
+            .elementToElement({
+                model: 'xcontrol',
+                view: (modelItem, { writer: viewWriter }) => this.createControlView(modelItem, viewWriter)
+            })
+        // Model-to-view conversion.
+        conversion.for('editingDowncast').elementToElement({
+            model: 'xcontrol-inline',
+            view: (modelItem, { writer: viewWriter }) => toWidget(this.createControlView(modelItem, viewWriter), viewWriter)
+        }).elementToElement({
+            model: 'xcontrol',
+            view: (modelItem, { writer: viewWriter }) => toWidget(this.createControlView(modelItem, viewWriter), viewWriter)
+        });
+
+        //#endregion
+
+    }
+    // Integration with the clipboard pipeline.
+    _defineClipboardInputOutput() {
+        const editor=this.editor;
+        const view = editor.editing.view;
+        const viewDocument = view.document;
+
+        // Processing pasted or dropped content.
+        this.listenTo(viewDocument, 'clipboardInput', (evt, data) => {
+            // The clipboard content was already processed by the listener on the higher priority
+            // (for example while pasting into the code block).
+            if (data.content) {
+                return;
+            }
+            const xmcontrol = data.dataTransfer.getData('xmcontrol');
+            if (xmcontrol) {
+                // Use JSON data encoded in the DataTransfer.
+                const controlData = JSON.parse(xmcontrol);
+                // Translate the h-card data to a view fragment.
+                const writer = new UpcastWriter(viewDocument);
+                const fragment = writer.createDocumentFragment();
+                try {
+                    const sharedId = controlData.id == '' ? this.getControlIdAsEpoch() : controlData.id;
+                    if (controlData.type === ControlType.LUA_CHON) {
+                        let optionsElement = null;
+                        if (controlData.values && controlData.values.length > 0) {
+                            optionsElement = controlData.values.map((v, index) =>
+                                writer.createElement('span', { value: `opt_${index}_${sharedId}`, 'data-equation': v, class: 'custom-option' }, v)
+                            );
+                        }
+                        else {
+                            optionsElement = writer.createElement('span', { value: `opt_0_${sharedId}`, 'data-equation': 'null', class: 'custom-option' }, 'null')
+                        }
+                        writer.appendChild(
+                            writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId },
+                                writer.createElement('span', { class: 'xcustom-select-wrapper' }, [
+                                    writer.createElement('span', { class: 'xcustom-select' }, [
+                                        writer.createElement('input', { type: 'hidden' }),
+                                        writer.createElement('span', { class: 'xcustom-select__trigger' }),
+                                        writer.createElement('span', { class: 'xcustom-options' }, optionsElement)
+                                    ])
+                                ]
+                                )),
+                            fragment);
+
+                    } else if (controlData.type === ControlType.NHAP) {
+                        writer.appendChild(
+                            writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId }, []),
+                            fragment
+                        );
+                    } else if (controlData.type === ControlType.PHEP_CHIA) {
+                        if (controlData.values) {
+                            var firstChilds = [
+                                writer.createElement('span', { class: 'so-bi-chia', value: controlData.values.soBiChia || '' }),
+                                writer.createElement('span', { class: 'so-du', value: controlData.values.soDu || '' })
+                            ];
+                            var secondChilds = [
+                                writer.createElement('span', { class: 'so-chia', value: controlData.values.soChia || '' }),
+                                writer.createElement('span', { class: 'so-thuong', value: controlData.values.thuongSo || '' })
+                            ];
+
+                            writer.appendChild(
+                                writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId }, writer.createElement('span', { class: 'division' }, [
+                                    writer.createElement('span', { class: 'division__left' }, firstChilds),
+                                    writer.createElement('span', { class: 'division__right' }, secondChilds),
+                                ])),
+                                fragment
+                            );
+                        }
+                    } else if (controlData.type === ControlType.PHAN_SO) {
+                        if (controlData.values) {
+                            var childrenElements = [
+                                writer.createElement('span', { class: 'tu-so', value: controlData.values.tuSo }),
+                                writer.createElement('span', { class: 'mau-so', value: controlData.values.mauSo }),
+                            ];
+                            writer.appendChild(
+                                writer.createElement('span', { class: 't-control', 'data-type': controlData.type, 'data-id': sharedId }, writer.createElement('span', { class: 'frac frac-input' }, childrenElements)),
+                                fragment
+                            );
+                        }
+                    } else {
+                        console.warn('Unsupported control');
+                    }
+                } catch (error) {
+                    console.error('Error from _defineClipboard: ' + error);
+                }
+                data.content = fragment;
+            }
+        });
+
+        // Processing copied, pasted or dragged content.
+        this.listenTo(document, 'clipboardOutput', (evt, data) => {
+            if (data.content.childCount != 1) {
+                return;
+            }
+
+            const viewElement = data.content.getChild(0);
+            if ((viewElement.is('element', 'span') || viewElement.is('element', 'div'))) {
+                if (viewElement.hasClass('t-control')) {
+                    data.dataTransfer.setData('xmcontrol', JSON.stringify(getControlDataFromViewElement(viewElement)));
+                }
+            }
+        });
+        editor.plugins.get('ClipboardPipeline').on('inputTransformation', (evt, data) => {
+			if (data.content.childCount == 1) {
+                const controlObj=data.dataTransfer.getData('xmcontrol');
+                const equationObj=data.dataTransfer.getData('xmequation');
+				const equation = data.content.getChild(0).data;
+				const modeKatex = localStorage.getItem(editor.id);
+				const writer=new UpcastWriter(viewDocument);
+				if (typeof modeKatex == typeof undefined || modeKatex != Constants.ModeKatex.PHUC_TAP) {
+					const fragment = writer.createDocumentFragment();
+					writer.appendChild(
+						writer.createText(equation),
+						fragment
+					);
+					data.content = fragment;
+				}
+				else {
+					const fragment = writer.createDocumentFragment();
+					writer.appendChild(
+						writer.createElement('span', { class: 'math-tex', 'display': false, 'data-value': equation }),
+						fragment
+					);
+					data.content = fragment;
+					localStorage.removeItem(editor.id);
+				}
+			}
+		});
+        
+    }
+    
 
 }

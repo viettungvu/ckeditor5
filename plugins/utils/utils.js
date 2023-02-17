@@ -207,11 +207,13 @@ class Utils {
             }
         } else if (engine === 'katex' && typeof katex !== 'undefined') {
             Utils.selectRenderMode(element, preview, previewUid, previewClassName, el => {
-                katex.render(equation, el, {
-                    throwOnError: false,
-                    displayMode: display,
-                    ...katexRenderOptions
-                });
+                if(equation){
+                    katex.render(equation, el, {
+                        throwOnError: false,
+                        displayMode: display,
+                        ...katexRenderOptions
+                    });
+                }
 
                 if (preview) {
                     Utils.moveAndScaleElement(element, el);
