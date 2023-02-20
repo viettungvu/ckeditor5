@@ -118,16 +118,7 @@ function createEditor(editorId, type = TypeOfCk.CAU_HOI, placehoder = '', data =
 $(document).ready(function (e) {
     editors = new Map();
     init();
-    $('#btn-test').click(function (e) {
-        e.preventDefault();
-        const editorId = $(this).parents('.question-group').attr('id');
-        const id = editors.get(editorId).id;
-        localStorage.setItem(id, '1');
-    })
-    // $('#btn-test').click(function(e){
-    //     e.preventDefault();
-    //     e.originalEvent.dataTransfer.setData('modeKatex','1');
-    // })
+
 })
 
 function init() {
@@ -279,6 +270,18 @@ function bindActionEditor() {
 
         $('#preview' + editorId).on('shown.bs.collapse', (e) => {
             updateLivePreview(editorId);
+        })
+
+
+        $('#btn-complex-equation-' + editorId).click(function (e) {
+            e.preventDefault();
+            // const editorId = $(this).parents('.question-group').attr('id');
+            const id = editors.get(editorId).id;
+            localStorage.setItem(id, '1');
+            const editor=editors.get(editorId);
+            const plugin=editor.plugins.get( 'MathUI');
+            plugin._showUI();
+            
         })
     });
     $('#btn-save-data').click(function (e) {

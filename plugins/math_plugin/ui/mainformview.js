@@ -3,7 +3,6 @@ import ViewCollection from '@ckeditor/ckeditor5-ui/src/viewcollection';
 
 import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 import SwitchButtonView from '@ckeditor/ckeditor5-ui/src/button/switchbuttonview';
-import LabeledInputView from '@ckeditor/ckeditor5-ui/src/labeledinput/labeledinputview';
 import InputTextView from '@ckeditor/ckeditor5-ui/src/inputtext/inputtextview';
 import LabelView from '@ckeditor/ckeditor5-ui/src/label/labelview';
 
@@ -20,7 +19,7 @@ import Utils from '../../utils/utils';
 
 import MathView from './mathview';
 
-import '../ui/mathform.css';
+import '../../../theme/mathform.css';
 
 export default class MainFormView extends View {
 	constructor(locale, engine, lazyLoad, previewEnabled, previewUid, previewClassName, popupClassName, katexRenderOptions) {
@@ -57,10 +56,42 @@ export default class MainFormView extends View {
 			this.mathView.bind('display').to(this.displayButtonView, 'isOn');
 
 			children = [
-				this.mathInputView,
-				this.displayButtonView,
-				this.previewLabel,
-				this.mathView
+				{
+					tag:'div',
+					attributes:{
+						class:[
+							'ck-math-view__item'
+						]
+					},
+					children:[this.mathInputView]
+				},
+				{
+					tag:'div',
+					attributes:{
+						class:[
+							'ck-math-view__item'
+						]
+					},
+					children:[this.displayButtonView]
+				},
+				{
+					tag:'div',
+					attributes:{
+						class:[
+							'ck-math-view__item'
+						]
+					},
+					children:[this.previewLabel]
+				},
+				{
+					tag:'div',
+					attributes:{
+						class:[
+							'ck-math-view__item'
+						]
+					},
+					children:[this.mathView]
+				}
 			];
 		} else {
 			children = [
@@ -137,11 +168,11 @@ export default class MainFormView extends View {
 	}
 
 	get equation() {
-		return this.mathInputView.inputView.element.value;
+		return this.mathInputView.element.value;
 	}
 
 	set equation(equation) {
-		this.mathInputView.inputView.element.value = equation;
+		this.mathInputView.element.value = equation;
 		if (this.previewEnabled) {
 			this.mathView.value = equation;
 		}
@@ -165,20 +196,13 @@ export default class MainFormView extends View {
 
 	_createMathInput() {
 		const t = this.locale.t;
-		// mathInput.infoText = t( 'Insert equation in TeX format.' );
-
-
-
-		const mathInput = new LabeledInputView(this.locale, InputTextView);
-		//mathInput.label = 'Nhập công thức TeX';
-		const inputView = mathInput.inputView;
+		const inputView=new InputTextView(this.locale);
 		let template = inputView.template;
 		template.tag = 'textarea';
-		//inputView.setTemplate(template);
 		inputView.extendTemplate({
 			attributes: {
 				rows: '3',
-				placeholder: 'Nhập công thức',
+				placeholder: t('Nhập công thức'),
 				class: [
 					'ck-math-textarea'
 				],
@@ -213,7 +237,7 @@ export default class MainFormView extends View {
 		inputView.on('render', onInput);
 		inputView.on('input', onInput);
 		inputView.on('change:value', onInput);
-		return mathInput;
+		return inputView;
 	}
 
 	_createButton(label, icon, className, eventName) {

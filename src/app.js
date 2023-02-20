@@ -18,7 +18,6 @@ import ImageResizeHandles from '@ckeditor/ckeditor5-image/src/imageresize/imager
 import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
 import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
 import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting';
-//import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
 import { ControlType, BackgroundColorClass } from '../enums/enums';
 import Control from '../plugins/control_plugin/control';

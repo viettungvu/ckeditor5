@@ -214,7 +214,9 @@ class Utils {
                         ...katexRenderOptions
                     });
                 }
-
+                else{
+                   el.innerHTML='';
+                }
                 if (preview) {
                     Utils.moveAndScaleElement(element, el);
                     el.style.visibility = 'visible';
@@ -347,7 +349,7 @@ class Utils {
         Utils.moveElement(parent, child);
         // Scale parent element same as preview
         const domRect = child.getBoundingClientRect();
-        parent.style.width = domRect.width + 'px';
+        //parent.style.width = domRect.width + 'px';
         parent.style.height = domRect.height + 'px';
     }
 
@@ -358,6 +360,7 @@ class Utils {
         child.style.position = 'absolute';
         child.style.left = left + 'px';
         child.style.top = top + 'px';
+        child.style.width = parent.style.width + 'px';
         child.style.zIndex = 'var(--ck-z-modal)';
         child.style.pointerEvents = 'none';
     }

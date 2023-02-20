@@ -11,7 +11,7 @@ import MainFormView from './ui/mainformview';
 
 // Need math commands from there
 import MathEditing from './mathediting';
-import mathIcon from '../../themes/icons/math.svg';
+import mathIcon from '../../theme/icons/math.svg';
 
 const mathKeystroke = 'Ctrl+M';
 

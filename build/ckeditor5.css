@@ -1,8 +1,3 @@
-.ck-editor__editable_inline {
-    min-height: 200px;
-    max-height:600px;
-}
-
 .ck-widget {
     border-radius: 4px;
     cursor: move;
@@ -39,9 +34,9 @@
             pointer-events: none;
         }
 
-        .t-control> .number-options >span >span>span {
-            border:none;
-        }
+    .t-control > .number-options > span > span > span {
+        border: none;
+    }
 
     .t-control > .input-number {
         padding: 0;
@@ -79,6 +74,7 @@
     border: 1px solid #9EE2BA;
     border-radius: 5px;
     display: inline-block;
+    position: relative;
 }
 
     .answer-box > .input-number,
@@ -92,6 +88,13 @@
 
     .answer-box:focus-within {
         outline: none;
+    }
+
+    .answer-box > .btn-del-control {
+        display:inline-block;
+        width:20px;
+        height:20px;
+        color:red;
     }
 
 .menu-open {
@@ -118,13 +121,14 @@
 
 
 .number-options > span > span {
-   /* display: flex;
+    /* display: flex;
     align-items: center;
     border-bottom: 1px solid #e7e7e7;
     padding: 8px 12px;*/
 }
 
 :root {
+    --t-control-bg-color-0: #362FD9;
     --t-control-bg-color-1: #FFDCA9;
     --t-control-bg-color-2: #CE7777;
     --t-control-bg-color-3: #68B984;
@@ -135,6 +139,10 @@
     --t-control-bg-color-8: #0E5E6F;
     --t-control-bg-color-9: #3E6D9C;
     --t-control-bg-color-10: #4E6C50;
+}
+
+.t-control-bg-color_0 {
+    border: 3px solid var(--t-control-bg-color-0);
 }
 
 .t-control-bg-color_1 {
@@ -176,6 +184,7 @@
 .t-control-bg-color_10 {
     border: 3px solid var(--t-control-bg-color-10);
 }
+
 .katex .text {
     font-family: KaTeX_Math;
     font-style: italic;

@@ -6,13 +6,11 @@ import {
     viewToModelPositionOutsideModelElement,
 } from "@ckeditor/ckeditor5-widget/src/utils";
 import Utils from "../utils/utils";
-import Constants from "../utils/constants";
 import { ControlType, BackgroundColorClass } from "../../enums/enums";
 export default class ControlEditing extends Plugin {
     static get requires() {
         return [Widget];
     }
-
     init() {
         const editor = this.editor;
         this._defineSchema();

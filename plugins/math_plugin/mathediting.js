@@ -8,7 +8,6 @@ import ClipboardObserver from "@ckeditor/ckeditor5-clipboard/src/clipboardobserv
 import UpcastWriter from "@ckeditor/ckeditor5-engine/src/view/upcastwriter";
 import MathCommand from "./mathcommand";
 import Utils from "../utils/utils";
-import Constants from "../utils/constants";
 export default class MathEditing extends Plugin {
 	static get requires() {
 		return [Widget];
@@ -42,47 +41,33 @@ export default class MathEditing extends Plugin {
 			popupClassName: [],
 			katexRenderOptions: {
 				throwOnError: false,
-				delimiters: [
-					{ left: "$$", right: "$$", display: true },
-					{ left: "$", right: "$", display: false },
-					{ left: "\\(", right: "\\)", display: false },
-					{ left: "\\[", right: "\\]", display: true },
-				],
+				delimiters: [],
 			},
 		});
 		editor.editing.view.addObserver(ClipboardObserver);
-		editor.plugins
-			.get("ClipboardPipeline")
-			.on("inputTransformation", (evt, data) => {
-				if (data.content.childCount == 1) {
-					const viewElement = data.content.getChild(0);
-					if (!viewElement.is("element", "span") &&!viewElement.is("element", "div")
-					) {
-						const clipboardContent = viewElement.data;
-						const modeKatex = localStorage.getItem(editor.id);
-						const writer = new UpcastWriter(viewDocument);
-						if (typeof modeKatex == typeof undefined ||modeKatex != Constants.ModeKatex.PHUC_TAP
-						) {
-							const fragment = writer.createDocumentFragment();
-							writer.appendChild(writer.createText(clipboardContent), fragment);
-							data.content = fragment;
-						} else {
-							const fragment = writer.createDocumentFragment();
-							writer.appendChild(
-								writer.createElement("span", {
-									class: "math-tex",
-									display: false,
-									"data-value": clipboardContent,
-								}),
-								fragment
-							);
-							data.content = fragment;
-							localStorage.removeItem(editor.id);
-						}
-					}
-				}
+		// editor.plugins
+		// 	.get("ClipboardPipeline")
+		// 	.on("inputTransformation", (evt, data) => {
+		// 		if (data.content.childCount == 1) {
+		// 			const viewElement = data.content.getChild(0);
+		// 			if (viewElement.is("element", "span") || viewElement.is("element", "div")
+		// 			) {
+		// 				const clipboardContent = viewElement.data;
+		// 				const writer = new UpcastWriter(viewDocument);
+		// 				const fragment = writer.createDocumentFragment();
+		// 				writer.appendChild(
+		// 					writer.createElement("span", {
+		// 						class: "math-tex",
+		// 						display: false,
+		// 						"data-value": clipboardContent,
+		// 					}),
+		// 					fragment
+		// 				);
+		// 				data.content = fragment;
+		// 			}
+		// 		}
 
-			});
+		// 	});
 	}
 
 	_defineSchema() {

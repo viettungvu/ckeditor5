@@ -2,7 +2,6 @@
 const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin');
 const path = require('path');
 const { styles } = require('@ckeditor/ckeditor5-dev-utils');
-const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     mode: 'production',
@@ -30,60 +29,10 @@ module.exports = {
         libraryTarget: 'umd',
         libraryExport: 'default',
     },
-    optimization: {
-        minimize: true,
-        minimizer: [new TerserPlugin({
-            terserOptions: {
-                format: {
-                    comments: false,
-                },
-            },
-            extractComments: false,
-        })],
-        // splitChunks: {
-        //     cacheGroups: {
-        //         styles: {
-        //             name: "ckeditor5",
-        //             type: "css/mini-extract",
-        //             chunks: "all",
-        //             enforce: true,
-        //         },
-        //     },
-        // },
-    },
     module: {
         rules: [
-            // {
-			// 	test: /ckeditor5-[^/\\]+[/\\]theme[/\\]icons[/\\][^/\\]+\.svg$/,
-			// 	use: ["raw-loader"],
-			// },
-			// {
-			// 	test: /ckeditor5-[^/\\]+[/\\]theme[/\\].+\.css$/,
-			// 	use: [
-			// 		MiniCssExtractPlugin.loader,
-			// 		"css-loader",
-			// 		{
-			// 			loader: "postcss-loader",
-			// 			options: {
-			// 				postcssOptions: styles.getPostCssConfig({
-			// 					themeImporter: {
-			// 						themePath: require.resolve(
-			// 							"@ckeditor/ckeditor5-theme-lark"
-			// 						),
-			// 					},
-			// 					minify: true,
-			// 				}),
-			// 			},
-			// 		},
-			// 	],
-			// },
             {
-                test: /\.svg$/,
-                use: ['raw-loader']
-            },
-
-            {
-                test: /\.css$/,
+                test: /\.(sa|sc|c)ss$/,
                 use: [{
                     loader: 'style-loader',
                     options: {
@@ -106,6 +55,10 @@ module.exports = {
                     }
                 }
                 ]
+            },
+            {
+                test: /\.svg$/,
+                use: ["raw-loader"],
             },
         ]
     },
