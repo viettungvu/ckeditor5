@@ -1,5 +1,5 @@
 {
-  "name": "dev-ck5",
+  "name": "custom-ckeditor5",
   "version": "1.0.0",
   "description": "CKEditor 5 Custom for MathTex and Drag drop feature",
   "main": "/src/app.js",

@@ -207,7 +207,7 @@ class Utils {
             }
         } else if (engine === 'katex' && typeof katex !== 'undefined') {
             Utils.selectRenderMode(element, preview, previewUid, previewClassName, el => {
-                if(equation){
+                if (equation) {
                     katex.render(equation, el, {
                         throwOnError: false,
                         displayMode: display,
@@ -344,7 +344,6 @@ class Utils {
     }
     static moveAndScaleElement(parent, child) {
         // Move to right place
-        parent.style.position = 'relative';
         Utils.moveElement(parent, child);
         // Scale parent element same as preview
         const domRect = child.getBoundingClientRect();

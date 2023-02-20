@@ -177,7 +177,7 @@ export default class MainFormView extends View {
 		//inputView.setTemplate(template);
 		inputView.extendTemplate({
 			attributes: {
-				rows: '5',
+				rows: '3',
 				placeholder: 'Nhập công thức',
 				class: [
 					'ck-math-textarea'
