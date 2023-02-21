@@ -43,9 +43,11 @@ class Utils {
             if (typeof renderOptions == typeof undefined) {
                 renderOptions = getDefaultRenderOption();
             }
-            const extract = extractDelimiters(equation, renderOptions.katexRenderOptions.delimiters);
-            renderOptions.displayMode = extract.hasDisplayDelimiters;
-            return katex.renderToString(extract.equation, renderOptions);
+            const extract = this.extractDelimiters(equation, renderOptions.katexRenderOptions.delimiters);
+            if (extract.isNormalText) {
+                return equation;
+            }
+            return katex.renderToString(extract.equation, renderOptions.katexRenderOptions);
         } catch (error) {
             console.error('Lỗi convert katex' + error)
         }
@@ -131,6 +133,15 @@ class Utils {
         };
     }
 
+    static getSelectedControlWidget(selection) {
+        const selectedElement = selection.getSelectedElement();
+
+        if (selectedElement && (selectedElement.is('element', 'xcontrol') || selectedElement.is('element', 'xcontrol-inline'))) {
+            return selectedElement;
+        }
+
+        return null;
+    }
     //#region For math plugin
     static getSelectedMathModelWidget(selection) {
         const selectedElement = selection.getSelectedElement();
@@ -218,9 +229,9 @@ class Utils {
                         //el.style.visibility = 'visible';
                     }
                 }
-                else{
-                   el.innerHTML='';
-                   el.style.visibility = 'hidden';
+                else {
+                    el.innerHTML = '';
+                    el.style.visibility = 'hidden';
                 }
             });
         } else if (typeof engine === 'function') {
@@ -366,6 +377,8 @@ class Utils {
         child.style.pointerEvents = 'none';
     }
     //#endregion
-
+    static getTime() {
+        return new Date().getTime();
+    }
 }
 export default Utils;

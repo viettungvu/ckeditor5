@@ -7,6 +7,7 @@ import {
 } from "@ckeditor/ckeditor5-widget/src/utils";
 import Utils from "../utils/utils";
 import { ControlType, BackgroundColorClass } from "../../enums/enums";
+import ControlCommand from "./controlCommand";
 export default class ControlEditing extends Plugin {
     static get requires() {
         return [Widget];
@@ -25,10 +26,9 @@ export default class ControlEditing extends Plugin {
         editor.config.define("controlConfig", {
             katexRenderOptions: {},
         });
+        editor.commands.add("control", new ControlCommand(editor));
     }
-    getControlIdAsEpoch() {
-        return new Date().getTime();
-    }
+    
     createControlView(modelItem, viewWriter) {
         const cfig = this.editor.config.get("controlConfig");
         const display = cfig.display ? cfig.display : false;
@@ -377,7 +377,7 @@ export default class ControlEditing extends Plugin {
             try {
                 let controlId = viewElement.getAttribute("data-id")
                     ? viewElement.getAttribute("data-id")
-                    : getControlIdAsEpoch();
+                    : Utils.getTime();
                 let children = Array.from(viewElement.getChildren());
                 let controlType = viewElement.getAttribute("data-type");
                 let elementClasses = Array.from(viewElement.getClassNames());
@@ -596,7 +596,7 @@ export default class ControlEditing extends Plugin {
                 const fragment = writer.createDocumentFragment();
                 try {
                     const sharedId =
-                        controlData.id == "" ? this.getControlIdAsEpoch() : controlData.id;
+                        controlData.id == "" ? Utils.getTime() : controlData.id;
                     if (controlData.type === ControlType.LUA_CHON) {
                         let optionsElement = null;
                         if (controlData.values && controlData.values.length > 0) {
