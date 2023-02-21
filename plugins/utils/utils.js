@@ -213,13 +213,14 @@ class Utils {
                         displayMode: display,
                         ...katexRenderOptions
                     });
+                    if (preview) {
+                        Utils.moveAndScaleElement(element, el);
+                        //el.style.visibility = 'visible';
+                    }
                 }
                 else{
                    el.innerHTML='';
-                }
-                if (preview) {
-                    Utils.moveAndScaleElement(element, el);
-                    el.style.visibility = 'visible';
+                   el.style.visibility = 'hidden';
                 }
             });
         } else if (typeof engine === 'function') {
@@ -360,7 +361,7 @@ class Utils {
         child.style.position = 'absolute';
         child.style.left = left + 'px';
         child.style.top = top + 'px';
-        child.style.width = parent.style.width + 'px';
+        child.style.width = parent.clientWidth + 'px';
         child.style.zIndex = 'var(--ck-z-modal)';
         child.style.pointerEvents = 'none';
     }

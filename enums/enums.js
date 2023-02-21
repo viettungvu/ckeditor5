@@ -1,4 +1,4 @@
-const SupportedControls = {
+const ControlType = {
     PHEP_CHIA: 'PHEP_CHIA',
     PHAN_SO: 'PHAN_SO',
     NHAP: 'NHAP',
@@ -11,7 +11,7 @@ const ModeKatex = {
     DON_GIAN: 2
 }
 module.exports = {
-    ControlType: SupportedControls,
+    ControlType: ControlType,
     BackgroundColorClass: BG_COLOR_CLASS,
 }
 
