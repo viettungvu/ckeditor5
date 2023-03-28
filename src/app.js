@@ -7,16 +7,9 @@ import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import ListProperties from '@ckeditor/ckeditor5-list/src/listproperties';
-import DocumentList from '@ckeditor/ckeditor5-list/src/documentlist';
-import DocumentListProperties from '@ckeditor/ckeditor5-list/src/documentlistproperties';
 import GeneralHtmlSupport from '@ckeditor/ckeditor5-html-support/src/generalhtmlsupport';
-import Image from '@ckeditor/ckeditor5-image/src/image';
-import ImageInsert from '@ckeditor/ckeditor5-image/src/imageinsert';
-import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
-import ImageResizeEditing from '@ckeditor/ckeditor5-image/src/imageresize/imageresizeediting';
-import ImageResizeHandles from '@ckeditor/ckeditor5-image/src/imageresize/imageresizehandles';
-import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
-import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
+import { Image, ImageInsert, ImageUpload, ImageResizeEditing, ImageResizeHandles, ImageResize, ImageToolbar, ImageTextAlternative, ImageCaption, ImageStyleUI }
+    from '@ckeditor/ckeditor5-image';
 import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
 import { ControlType, BackgroundColorClass } from '../enums/enums';
@@ -36,7 +29,7 @@ XMEditor.builtinPlugins = [
     Alignment,
     GeneralHtmlSupport,
     Control, Math,
-    Image, ImageResizeEditing, ImageResizeHandles, ImageResize,ImageToolbar,
+    Image, ImageResizeEditing, ImageResizeHandles, ImageResize, ImageToolbar, ImageTextAlternative, ImageStyleUI,
     SimpleUploadAdapter, ImageUpload, ImageInsert,
     List, ListProperties,
     SourceEditing,
@@ -60,7 +53,7 @@ XMEditor.defaultConfig = {
             'heading', '|',
             'bold', 'italic', 'bulletedList', 'numberedList', '|',
             'alignment', '|',
-            'resizeImage', 'insertImage', 'ckfinder', '|',
+            'insertImage', '|',
             'math', '|',
             'sourceEditing', '|',
             'undo', 'redo', '|',
@@ -105,7 +98,7 @@ XMEditor.defaultConfig = {
         resizeUnit: 'px',
         resizeOptions: [{
             name: 'resizeImage:original',
-            label: 'Original',
+            label: 'Gốc',
             value: null
         },
         {
@@ -117,11 +110,54 @@ XMEditor.defaultConfig = {
             name: 'resizeImage:200',
             label: '200px',
             value: '200'
+        },
+        {
+            name: 'resizeImage:300',
+            label: '300px',
+            value: '300'
+        },
+        {
+            name: 'resizeImage:400',
+            label: '400px',
+            value: '400'
         }
         ],
         insert: {
             type: 'inline'
-        }
+        },
+        styles: {
+            // // Defining custom styling options for the images.
+            // options: [ {
+            //     name: 'side',
+            //     icon: sideIcon,
+            //     title: 'Side image',
+            //     className: 'image-side',
+            //     modelElements: [ 'imageBlock' ]
+            // }, {
+            //     name: 'margin-left',
+            //     icon: leftIcon,
+            //     title: 'Image on left margin',
+            //     className: 'image-margin-left',
+            //     modelElements: [ 'imageInline' ]
+            // }, {
+            //     name: 'margin-right',
+            //     icon: rightIcon,
+            //     title: 'Image on right margin',
+            //     className: 'image-margin-right',
+            //     modelElements: [ 'imageInline' ]
+            // },
+            // // Modifying icons and titles of the default inline and
+            // // block image styles to reflect its real appearance.
+            // {
+            //     name: 'inline',
+            //     icon: inlineIcon
+            // }, {
+            //     name: 'block',
+            //     title: 'Centered image',
+            //     icon: centerIcon
+            // } ]
+        },
+        toolbar: ['imageTextAlternative', '|', 'imageStyle', 'resizeImage']
     },
 }
 export default XMEditor;
