@@ -6,10 +6,10 @@ const TypeOfCk = {
 var editors;
 let controlInserted = 0
 let map = []
-const TYPE = XMEditor.ControlType
+const TYPE = TuTai.XMEditor.ControlType
 function createEditor(editorId, type = TypeOfCk.CAU_HOI, placehoder = '', data = '') {
     const editorContent = $('#' + editorId).find('.question-editor__content')
-    return XMEditor
+    return TuTai.XMEditor
         .create(editorContent[0], {
             controlConfig: {
                 katexRenderOptions: {
@@ -63,11 +63,18 @@ function createEditor(editorId, type = TypeOfCk.CAU_HOI, placehoder = '', data =
             editors.set(editorId, editor);
             editor.setData(data);
             console.log('[' + editor.id + ']: Editor has been initalized successful', editor);
-            XMEditor.Inspector.attach(editor);
+            TuTai.XMEditor.Inspector.attach(editor);
             // console.log(editor.ui.view.toolbar.element)
             // editor.ui.view.toolbar.element.style.display = 'none';
-            editor.model.document.on('change:data', (evt) => {
+            // editor.model.change( writer => {
+            //     const autocompletes = findNodes(writer, 'autocomplete', editor.model.document.getRoot());
+            //     console.log(autocompletes)
+            //     console.log(editor.model.document.markers)
+            // } );
+            editor.model.document.on('change:data', (evt, writer) => {
                 try {
+                    const element = editor.model.find(node => node.is('element') && node.name == 'x-control');
+                    console.log('Element:', element);
                     const changes = editor.model.document.differ.getChanges({ includeChangesInGraveyard: true })
                     const lastChanges = changes[changes.length - 1]
                     if (lastChanges.type === 'remove' && lastChanges.name === 'xcontrol') {
@@ -103,6 +110,7 @@ function createEditor(editorId, type = TypeOfCk.CAU_HOI, placehoder = '', data =
                 }
             })
             editor.model.document.on('change', (evt, name, value) => {
+
                 // editor.updateSourceElement();
                 // $('.answer-box').removeClass('highlight')
                 // const selectedElement = editor.model.document.selection.getSelectedElement()
@@ -121,6 +129,21 @@ $(document).ready(function (e) {
 
 })
 
+const findNodes = function (writer, type, root) {
+    const nodes = [];
+    const range = writer.createRangeIn(root);
+
+    for (const value of range.getWalker({ ignoreElementEnd: true })) {
+        const node = value.item;
+
+        if (node.is(type)) {
+            nodes.push(node);
+        }
+    }
+
+    return nodes;
+};
+
 function init() {
     const eQuestionTmpl = $.templates('#EDITOR_CAU_HOI');
     const editorQuestion = eQuestionTmpl.render({ editorId: 'editor-cau-hoi' });
@@ -130,26 +153,7 @@ function init() {
     const editorSolve = eSolveTmpl.render({ editorId: 'editor-loi-giai' });
     $('#box-editor-solve').append(editorSolve);
 
-    let content = `<p>
-    <img src="/build/images/img.png"/>
-    Hình vuông có&nbsp;<span class="ck-math-tex ck-math-tex-inline" style="display:inline-block;user-select:none;"><span class="math-tex" data-value="\dfrac{1}{2}"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 2.0074em; vertical-align: -0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.3214em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">2</span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.686em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span>góc&nbsp;<span class="t-control t-control-bg-color_1 ck-widget" style="display:inline-block;" data-type="NHAP" data-id="1676953330746"><span class="input-number">
-    <input class="katex" type="text" name="ANS_1676953330746">
-    </span></span><span class="t-control t-control-bg-color_2" style="display:inline-block;" data-type="PHAN_SO" data-id="1676962538671"><span class="frac frac-input"><span class="tu-so" value="">
-    <input class="katex" type="text" name="ANS_TU_SO_1676962538671">
-    </span><span class="mau-so" value="">
-    <input class="katex" type="text" name="ANS_MAU_SO_1676962538671">
-    </span></span></span><span class="t-control t-control-bg-color_7" style="display:inline-block;" data-type="PHEP_CHIA" data-id="1676962540348"><span class="division"><span class="division__left"><span class="so-bi-chia">
-    <input class="katex " type="text" name="ANS_SO_BI_CHIA_1676962540348">
-    </span><span class="so-du">
-    <input class="katex" type="text">
-    </span></span><span class="division__right"><span class="so-chia">
-    <input class="katex" type="text" name="ANS_SO_CHIA_1676962540348">
-    </span><span class="thuong-so">
-    <input class="katex" type="text" name="ANS_SO_THUONG_1676962540348">
-    </span></span></span></span><span class="t-control t-control-bg-color_4" style="display:inline-block;" data-type="LUA_CHON" data-id="1676962541731"><span class="xcustom-select-wrapper" onclick="xSelectOptionCustom(this)"><span class="xcustom-select">
-    <input type="hidden" name="ANS_LUA_CHON_1676962541731" value="">
-    <span class="xcustom-select__trigger"><span>Chọn</span><span class="arrow">&nbsp;</span></span><span class="xcustom-options"><span class="custom-option" value="opt_0_1676962541731" data-equation="null">null</span></span></span></span></span>
-</p>`
+    let content = ``
 
     //content = '';
     content = content.replace(/(?<!data-equation=\")\[KATEX\](.+?)\[\/KATEX\]/gi, '<span class="math-tex" data-value="$1"></span>')
@@ -297,10 +301,10 @@ function bindActionEditor() {
             // const editorId = $(this).parents('.question-group').attr('id');
             const id = editors.get(editorId).id;
             localStorage.setItem(id, '1');
-            const editor=editors.get(editorId);
-            const plugin=editor.plugins.get( 'MathUI');
+            const editor = editors.get(editorId);
+            const plugin = editor.plugins.get('MathUI');
             plugin._showUI();
-            
+
         })
     });
     $('#btn-save-data').click(function (e) {

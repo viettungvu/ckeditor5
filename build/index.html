@@ -30,7 +30,7 @@
     <!-- <script src="https://ckeditor.com/apps/ckfinder/3.5.0/ckfinder.js"></script> -->
     <script src="/build/js/jquery.min.js"></script>
     <script src="/build/js/jsrender.min.js"></script>
-    <script src="/build/ckeditor5.bundle.js"></script>
+    <script src="/build/ckDevelopment.bundle.js"></script>
     <script src="/build/xselectcustom.js"></script>
 </head>
 
@@ -1101,6 +1101,22 @@
     <script src="/build/js/ofi.min.js"></script>
     <script src="/build/js/main.min.js?v=1668535090497"></script>
     <script src="/build/index.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            var test = $("#editor-loi-giai").find('.wysiwyg');
+        TuTai.XMInlineEditor.create(test[0], {
+
+        })
+            .then((editor) => {
+                console.log(editor)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        })
+        
+    </script>
 </body>
 
 </html>
