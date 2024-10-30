@@ -13,16 +13,11 @@ import { Image, ImageInsert, ImageUpload, ImageResizeEditing, ImageResizeHandles
     from '@ckeditor/ckeditor5-image';
 import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
-import { ControlType, BackgroundColorClass } from '../enums/enums';
-import Control from '../plugins/control_plugin/control';
 import Math from '../plugins/math_plugin/math';
 import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
-import MathType from '@wiris/mathtype-ckeditor5/src/plugin';
 class XMEditor extends ClassicEditor {
-    static ControlType = ControlType;
-    static BackgroundColorClass = BackgroundColorClass;
-    static Inspector = CKEditorInspector;
-};
+
+}
 XMEditor.builtinPlugins = [
     Essentials,
     Bold, Italic,
@@ -167,7 +162,7 @@ XMEditor.defaultConfig = {
 
 class XMInlineEditor extends InlineEditor {
 
-};
+}
 XMInlineEditor.builtinPlugins = [
     Essentials,
     Bold, Italic,

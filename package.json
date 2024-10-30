@@ -1,11 +1,11 @@
 {
   "name": "custom-ckeditor5",
   "version": "1.0.0",
-  "description": "CKEditor 5 Custom for MathTex and Drag drop feature",
+  "description": "Classic Editor",
   "main": "/src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack --mode=production --node-env=production"
   },
   "keywords": [],
   "author": {
@@ -39,10 +39,10 @@
     "@ckeditor/ckeditor5-utils": "^36.0.0",
     "@wiris/mathtype-ckeditor5": "^8.4.0",
     "css-loader": "^5.2.7",
-    "katex": "^0.16.3",
     "postcss-loader": "^4.3.0",
     "raw-loader": "^4.0.2",
     "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^5.3.10",
     "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
@@ -51,6 +51,6 @@
     "sass": "^1.58.0",
     "sass-loader": "^13.2.0",
     "terser-webpack-plugin": "^5.3.6",
-    "webpack": "^5.75.0"
+    "webpack": "^5.95.0"
   }
 }
