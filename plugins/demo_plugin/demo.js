@@ -20,13 +20,13 @@ class PlaceholderCommand extends Command {
 
         editor.model.change(writer => {
             // Create a <placeholder> element with the "name" attribute (and all the selection attributes)...
-            const placeholder = writer.createElement('placeholder', {
-                ...Object.fromEntries(selection.getAttributes()),
-                name: value
-            });
+            // const placeholder = writer.createElement('placeholder', {
+            //     ...Object.fromEntries(selection.getAttributes()),
+            //     name: value
+            // });
 
             // ... and insert it into the document. Put the selection on the inserted element.
-            editor.model.insertObject(placeholder, null, null, { setSelection: 'on' });
+            editor.model.insertContent(writer.createText('{' + value + '}'));
         });
     }
 
@@ -57,7 +57,7 @@ class PlaceholderUI extends Plugin {
             dropdownView.buttonView.set({
                 // The t() function helps localize the editor. All strings enclosed in t() can be
                 // translated and change when the language of the editor changes.
-                label: t('Placeholder'),
+                label: t('#Thêm thẻ'),
                 tooltip: true,
                 withText: true
             });
@@ -103,7 +103,7 @@ class PlaceholderEditing extends Plugin {
     }
 
     init() {
-        console.log('PlaceholderEditing#init() got called');
+        //console.log('PlaceholderEditing#init() got called');
 
         this._defineSchema();
         this._defineConverters();
@@ -129,54 +129,53 @@ class PlaceholderEditing extends Plugin {
             inheritAllFrom: '$inlineObject',
 
             // The placeholder can have many types, like date, name, surname, etc:
-            allowAttributes: ['name']
+            //allowAttributes: ['name']
         });
     }
 
     _defineConverters() {
         const conversion = this.editor.conversion;
 
-        conversion.for('upcast').elementToElement({
-            view: {
-                name: 'span',
-                classes: ['placeholder']
-            },
-            model: (viewElement, { writer: modelWriter }) => {
-                // Extract the "name" from "{name}".
-                const name = viewElement.getChild(0).data.slice(1, -1);
+        // conversion.for('upcast').elementToElement({
+        //     view: {
+        //         name: '',
+        //         classes: []
+        //     },
+        //     model: (viewElement, { writer: modelWriter }) => {
+        //         // Extract the "name" from "{name}".
+        //         const name = viewElement.getChild(0).data.slice(1, -1);
 
-                return modelWriter.createElement('placeholder', { name });
-            }
-        });
+        //         return modelWriter.createElement('placeholder', { name });
+        //     }
+        // });
 
-        conversion.for('editingDowncast').elementToElement({
-            model: 'placeholder',
-            view: (modelItem, { writer: viewWriter }) => {
-                const widgetElement = createPlaceholderView(modelItem, viewWriter);
+        // conversion.for('editingDowncast').elementToElement({
+        //     model: 'placeholder',
+        //     view: (modelItem, { writer: viewWriter }) => {
+        //         const widgetElement = createPlaceholderView(modelItem, viewWriter);
 
-                // Enable widget handling on a placeholder element inside the editing view.
-                return toWidget(widgetElement, viewWriter);
-            }
-        });
+        //         // Enable widget handling on a placeholder element inside the editing view.
+        //         return toWidget(widgetElement, viewWriter);
+        //     }
+        // });
 
-        conversion.for('dataDowncast').elementToElement({
-            model: 'placeholder',
-            view: (modelItem, { writer: viewWriter }) => createPlaceholderView(modelItem, viewWriter)
-        });
+        // conversion.for('dataDowncast').elementToElement({
+        //     model: 'placeholder',
+        //     view: (modelItem, { writer: viewWriter }) => createPlaceholderView(modelItem, viewWriter)
+        // });
 
-        // Helper method for both downcast converters.
-        function createPlaceholderView(modelItem, viewWriter) {
-            const name = modelItem.getAttribute('name');
+        // // Helper method for both downcast converters.
+        // function createPlaceholderView(modelItem, viewWriter) {
+        //     const name = modelItem.getAttribute('name');
 
-            const placeholderView = viewWriter.createContainerElement('span', {
-                class: 'placeholder'
-            });
+        //     const placeholderView = viewWriter.createContainerElement('', {
+        //         class: ''
+        //     });
 
-            // Insert the placeholder name (as a text).
-            const innerText = viewWriter.createText('{' + name + '}');
-            viewWriter.insert(viewWriter.createPositionAt(placeholderView, 0), innerText);
-
-            return placeholderView;
-        }
+        //     // Insert the placeholder name (as a text).
+        //     const innerText = viewWriter.createText('{' + name + '}');
+        //     viewWriter.insert(viewWriter.createPositionAt(placeholderView, 0), innerText);
+        //     return innerText;
+        // }
     }
 }

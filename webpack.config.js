@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     mode: 'production',
     entry: {
-        ckDevelopment: './src/app.js',
+        xClassicEditor: './src/app.js',
     },
     plugins: [
         new CKEditorWebpackPlugin({
@@ -24,8 +24,8 @@ module.exports = {
     ],
     output: {
         path: path.resolve(__dirname, 'build'),
-        filename: '[name].bundle.js',
-        library: 'TuTai',
+        filename: '[name].min.js',
+        library: 'XClassicEditor',
         libraryTarget: 'umd',
         libraryExport: 'default',
     },
