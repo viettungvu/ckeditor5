@@ -1,0 +1,18 @@
+/* CustomFontFamily.css */
+
+.ck.ck-dropdown.ck-font-family-dropdown .ck-dropdown__button .ck-button__label {
+    width: 4.8125rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ck.ck-dropdown.ck-font-family-dropdown .ck-dropdown__panel .ck-list__item .ck-button__label {
+    font-family: inherit;
+    padding: 0 8px;
+}
+
+/* Đảm bảo mỗi item trong dropdown hiển thị đúng font */
+.ck.ck-dropdown.ck-font-family-dropdown .ck-list__item .ck-button {
+    width: 100%;
+}

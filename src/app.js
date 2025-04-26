@@ -1,30 +1,30 @@
 import ClassicEditor from "@ckeditor/ckeditor5-editor-classic/src/classiceditor";
-import InlineEditor from "@ckeditor/ckeditor5-editor-inline/src/inlineeditor";
+//import InlineEditor from "@ckeditor/ckeditor5-editor-inline/src/inlineeditor";
+
 import Essentials from "@ckeditor/ckeditor5-essentials/src/essentials";
 import Paragraph from "@ckeditor/ckeditor5-paragraph/src/paragraph";
 import Heading from "@ckeditor/ckeditor5-heading/src/heading";
-import { Bold, Italic, Underline } from "@ckeditor/ckeditor5-basic-styles";
+import { Bold, Italic, Underline, Strikethrough } from "@ckeditor/ckeditor5-basic-styles";
+import BlockQuote from "@ckeditor/ckeditor5-block-quote/src/blockquote";
+import Indent from "@ckeditor/ckeditor5-indent/src/indent";
 import Alignment from "@ckeditor/ckeditor5-alignment/src/alignment";
 import { List, ListProperties } from "@ckeditor/ckeditor5-list";
 import { Link } from "@ckeditor/ckeditor5-link";
-import { FontSize } from "@ckeditor/ckeditor5-font";
-import { Table, TableToolbar,TableColumnResize } from "@ckeditor/ckeditor5-table";
+import { FontSize, FontColor, FontFamily, FontBackgroundColor } from "@ckeditor/ckeditor5-font";
+
+import { Table, TableToolbar, TableColumnResize } from "@ckeditor/ckeditor5-table";
 import GeneralHtmlSupport from "@ckeditor/ckeditor5-html-support/src/generalhtmlsupport";
 import { Image, ImageInsert, ImageUpload, ImageResizeEditing, ImageResizeHandles, ImageResize, ImageToolbar, ImageTextAlternative, ImageCaption, ImageStyleUI } from "@ckeditor/ckeditor5-image";
 import SourceEditing from "@ckeditor/ckeditor5-source-editing/src/sourceediting";
+import RemoveFormat from "@ckeditor/ckeditor5-remove-format/src/removeformat";
 import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter";
-//import { ControlType, BackgroundColorClass } from "../enums/enums";
-//import Control from "../plugins/control_plugin/control";
-//import Math from "../plugins/math_plugin/math";
-//import MathType from "@wiris/mathtype-ckeditor5/src/plugin";
-import CKEditorInspector from "@ckeditor/ckeditor5-inspector";
+// import CKEditorInspector from "@ckeditor/ckeditor5-inspector";
 import Placeholder from "../plugins/demo_plugin/demo";
+import CustomFontFamilyUI from "../plugins/custom_font/CustomFontFamilyUI";
 class XMEditor extends ClassicEditor {
-  //static ControlType = ControlType;
-  //static BackgroundColorClass = BackgroundColorClass;
-  static Inspector = CKEditorInspector;
+  //static Inspector = CKEditorInspector;
 }
-XMEditor.builtinPlugins = [Essentials, Bold, Italic, Underline, Link, FontSize, Heading, Paragraph, Alignment, GeneralHtmlSupport, Image, ImageResizeEditing, ImageResizeHandles, ImageResize, ImageToolbar, ImageTextAlternative, ImageStyleUI, SimpleUploadAdapter, ImageUpload, ImageInsert, List, ListProperties, Table, TableToolbar,TableColumnResize, SourceEditing, Placeholder];
+XMEditor.builtinPlugins = [Alignment, Bold, BlockQuote,  Essentials, FontSize, FontFamily, FontColor, FontBackgroundColor, Italic, Indent, Image, ImageResizeEditing, ImageResizeHandles, ImageResize, ImageToolbar, ImageTextAlternative, ImageStyleUI, ImageUpload, ImageInsert, Underline, Link, List, ListProperties, GeneralHtmlSupport, Heading, Paragraph, SimpleUploadAdapter, Strikethrough, RemoveFormat, Table, TableToolbar, TableColumnResize, SourceEditing, Placeholder,CustomFontFamilyUI];
 // Editor configuration.
 XMEditor.defaultConfig = {
   language: "vi",
@@ -40,8 +40,47 @@ XMEditor.defaultConfig = {
     disallow: [],
   },
   toolbar: {
-    items: ["heading", "|", "bold", "italic", "underline", "|","fontSize", "bulletedList", "numberedList","alignment", "|", "insertTable", "link", "insertImage", "|", "sourceEditing", "|", "undo", "redo", "|", "placeholder"],
-    shouldNotGroupWhenFull: true,
+    items: [
+      "undo",
+      "redo",
+      "|",
+      "heading",
+      "fontSize",
+      "fontFamily",
+
+      "|",
+      "bold",
+      "underline",
+      "italic",
+      {
+        label: "Text color",
+        icon: false,
+        items: ["fontColor", "fontBackgroundColor"],
+      },
+      "alignment",
+      "indent",
+      "|",
+      {
+        label: "Insert",
+        icon: false,
+        items: ["uploadImage", "insertTable", "link"],
+      },
+      "|",
+      {
+        label: "Lists",
+        icon: false,
+        items: ["bulletedList", "numberedList"],
+      },
+      "|",
+      "sourceEditing",
+      "placeholder",
+      {
+        label: "More",
+        icon: "threeVerticalDots",
+        items: ["blockQuote", "removeformat", "strikethrough"],
+      },
+    ],
+    shouldNotGroupWhenFull: false,
   },
   alignment: {
     options: ["left", "right", "center", "justify"],
