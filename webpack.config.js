@@ -1,9 +1,11 @@
 "use strict";
-const CKEditorWebpackPlugin = require("@ckeditor/ckeditor5-dev-webpack-plugin");
+const webpack = require("webpack");
+//const CKEditorWebpackPlugin = require("@ckeditor/ckeditor5-dev-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const path = require("path");
 const { styles } = require("@ckeditor/ckeditor5-dev-utils");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const packageJson = require("./package.json");
 module.exports = {
   mode: "production",
   entry: {
@@ -21,6 +23,20 @@ module.exports = {
 
     //   // For more advanced options see https://github.com/ckeditor/ckeditor5-dev/tree/master/packages/ckeditor5-dev-webpack-plugin.
     // }),
+    new webpack.BannerPlugin({
+      banner: ` 
+        XMEditor v${packageJson.version}
+        Author: ${packageJson.author.name}
+        Email: ${packageJson.author.email}
+        Url: ${packageJson.author.url}
+        Version: ${packageJson.version}
+        Description: ${packageJson.description}
+        Build Time: ${new Date().toISOString()}
+      `.trim(),
+      raw: false, // If true, it will NOT wrap it in a comment. You probably want it false (so it becomes a comment at the top)
+      entryOnly: true, // Only prepend banner to the entry chunks
+      //test: /\.js$/, // Only apply the banner to JavaScript files
+    }),
     new MiniCssExtractPlugin({
       filename: "xckeditor.min.css", // tên file css output
     }),

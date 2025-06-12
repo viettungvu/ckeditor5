@@ -1,0 +1,22 @@
+.ck.ck-placeholder-select {
+    font-family: var(--ck-font-family);
+    font-size: var(--ck-font-size-normal);
+    background: var(--ck-color-base-background);
+}
+
+.ck-placeholder-list .ck-button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: var(--ck-spacing-small);
+}
+
+.ck-placeholder-list .ck-button:hover {
+    background: var(--ck-color-base-active);
+}
+
+.ck-placeholder-list .ck-button.ck-disabled {
+    color: var(--ck-color-base-foreground-disabled);
+    cursor: not-allowed;
+}

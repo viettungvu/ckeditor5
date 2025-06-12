@@ -18,11 +18,11 @@ import { Image, ImageInsert, ImageUpload, ImageResizeEditing, ImageResizeHandles
 import SourceEditing from "@ckeditor/ckeditor5-source-editing/src/sourceediting";
 import RemoveFormat from "@ckeditor/ckeditor5-remove-format/src/removeformat";
 import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter";
-// import CKEditorInspector from "@ckeditor/ckeditor5-inspector";
-import Placeholder from "../plugins/demo_plugin/demo";
+import CKEditorInspector from "@ckeditor/ckeditor5-inspector";
+import Placeholder from "../plugins/placeholder_plugin/placeholder";
 import CustomFontFamilyUI from "../plugins/custom_font/CustomFontFamilyUI";
 class XMEditor extends ClassicEditor {
-  //static Inspector = CKEditorInspector;
+  static Inspector = CKEditorInspector;
 }
 XMEditor.builtinPlugins = [Alignment, Bold, BlockQuote,  Essentials, FontSize, FontFamily, FontColor, FontBackgroundColor, Italic, Indent, Image, ImageResizeEditing, ImageResizeHandles, ImageResize, ImageToolbar, ImageTextAlternative, ImageStyleUI, ImageUpload, ImageInsert, Underline, Link, List, ListProperties, GeneralHtmlSupport, Heading, Paragraph, SimpleUploadAdapter, Strikethrough, RemoveFormat, Table, TableToolbar, TableColumnResize, SourceEditing, Placeholder,CustomFontFamilyUI];
 // Editor configuration.
