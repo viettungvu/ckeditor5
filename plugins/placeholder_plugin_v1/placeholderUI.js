@@ -2,9 +2,9 @@ import { ListView, ListItemView, ButtonView, ContextualBalloon } from "@ckeditor
 import ClickObserver from "@ckeditor/ckeditor5-engine/src/view/observer/clickobserver";
 import clickOutsideHandler from "@ckeditor/ckeditor5-ui/src/bindings/clickoutsidehandler";
 import Plugin from "@ckeditor/ckeditor5-core/src/plugin";
-import Utils from "../utils/utils";
+import Utils from "../utils/utils.js";
 import * as xplaceholder from "./constants.js";
-export default class PlaceholderUI extends Plugin {
+export default class PlaceholderUIV1 extends Plugin {
   static get requires() {
     return [ContextualBalloon];
   }

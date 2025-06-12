@@ -2,23 +2,23 @@ import Plugin from "@ckeditor/ckeditor5-core/src/plugin";
 import Widget from "@ckeditor/ckeditor5-widget/src/widget";
 
 import { toWidget, viewToModelPositionOutsideModelElement } from "@ckeditor/ckeditor5-widget/src/utils";
-import PlaceholderCommand from "./placeholderCommand.js";
+import PlaceholderCommandV1 from "./placeholderCommand.js";
 import * as xplaceholder from "./constants.js";
-export default class PlaceholderEditing extends Plugin {
+export default class PlaceholderEditingV1 extends Plugin {
   static get requires() {
     return [Widget];
   }
 
   init() {
     this._defineSchema();
-    this._defineConverters();
-    
-    this.editor.commands.add(xplaceholder.CMD_NAME, new PlaceholderCommand(this.editor));
+    //this._defineConverters();
 
-    this.editor.editing.mapper.on(
-      "viewToModelPosition",
-      viewToModelPositionOutsideModelElement(this.editor.model, (viewElement) => viewElement.hasClass(xplaceholder.COMMON_CLASS))
-    );
+    this.editor.commands.add(xplaceholder.CMD_NAME, new PlaceholderCommandV1(this.editor));
+
+    // this.editor.editing.mapper.on(
+    //   "viewToModelPosition",
+    //   viewToModelPositionOutsideModelElement(this.editor.model, (viewElement) => viewElement.hasClass(xplaceholder.COMMON_CLASS))
+    // );
     this.editor.config.define("xplaceholder", {
       types: [
         { text: "Date", value: "date" },
@@ -31,11 +31,16 @@ export default class PlaceholderEditing extends Plugin {
   _defineSchema() {
     const schema = this.editor.model.schema;
 
-    schema.register(xplaceholder.MODEL_NAME, {
-      isInline: true,
-      allowWhere: "$text",
-      allowAttributes: ["value"],
-    });
+    // schema.register(xplaceholder.MODEL_NAME, {
+    //   isInline: true,
+    //   allowWhere: "$text",
+    //   allowAttributes: ["value"],
+    // });
+    // schema.register('', {
+    //   inheritAllFromObject: true,
+    //   //allowWhere: "$text",
+    //   //allowAttributes: ["value"],
+    // });
   }
 
   _defineConverters() {
