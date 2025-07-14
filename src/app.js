@@ -12,19 +12,19 @@ import { List, ListProperties } from "@ckeditor/ckeditor5-list";
 import { Link } from "@ckeditor/ckeditor5-link";
 import { FontSize, FontColor, FontFamily, FontBackgroundColor } from "@ckeditor/ckeditor5-font";
 
-import { Table, TableToolbar, TableColumnResize } from "@ckeditor/ckeditor5-table";
+import { Table, TableToolbar, TableColumnResize,TableProperties,TableCellProperties } from "@ckeditor/ckeditor5-table";
 import GeneralHtmlSupport from "@ckeditor/ckeditor5-html-support/src/generalhtmlsupport";
 import { Image, ImageInsert, ImageUpload, ImageResizeEditing, ImageResizeHandles, ImageResize, ImageToolbar, ImageTextAlternative, ImageCaption, ImageStyleUI } from "@ckeditor/ckeditor5-image";
 import SourceEditing from "@ckeditor/ckeditor5-source-editing/src/sourceediting";
 import RemoveFormat from "@ckeditor/ckeditor5-remove-format/src/removeformat";
 import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter";
 import CKEditorInspector from "@ckeditor/ckeditor5-inspector";
-import PlaceholderV1 from "../plugins/placeholder_pluginv1/PlaceholderV1";
+import PlaceholderV1 from "../plugins/placeholder_plugin_v1/placeholder";
 import CustomFontFamilyUI from "../plugins/custom_font/CustomFontFamilyUI";
 class XMEditor extends ClassicEditor {
-  static Inspector = CKEditorInspector;
+  //static Inspector = CKEditorInspector;
 }
-XMEditor.builtinPlugins = [Alignment, Bold, BlockQuote,  Essentials, FontSize, FontFamily, FontColor, FontBackgroundColor, Italic, Indent, Image, ImageResizeEditing, ImageResizeHandles, ImageResize, ImageToolbar, ImageTextAlternative, ImageStyleUI, ImageUpload, ImageInsert, Underline, Link, List, ListProperties, GeneralHtmlSupport, Heading, Paragraph, SimpleUploadAdapter, Strikethrough, RemoveFormat, Table, TableToolbar, TableColumnResize, SourceEditing, PlaceholderV1,CustomFontFamilyUI];
+XMEditor.builtinPlugins = [Alignment, Bold, BlockQuote, Essentials, FontSize, FontFamily, FontColor, FontBackgroundColor, Italic, Indent, Image, ImageResizeEditing, ImageResizeHandles, ImageResize, ImageToolbar, ImageTextAlternative, ImageStyleUI, ImageUpload, ImageInsert, Underline, Link, List, ListProperties, GeneralHtmlSupport, Heading, Paragraph, SimpleUploadAdapter, Strikethrough, RemoveFormat, Table, TableToolbar, TableColumnResize,TableCellProperties, TableProperties, SourceEditing, PlaceholderV1, CustomFontFamilyUI];
 // Editor configuration.
 XMEditor.defaultConfig = {
   language: "vi",
@@ -150,38 +150,52 @@ XMEditor.defaultConfig = {
     },
     styles: {
       // // Defining custom styling options for the images.
-      // options: [ {
-      //     name: 'side',
-      //     icon: sideIcon,
-      //     title: 'Side image',
-      //     className: 'image-side',
-      //     modelElements: [ 'imageBlock' ]
-      // }, {
-      //     name: 'margin-left',
-      //     icon: leftIcon,
-      //     title: 'Image on left margin',
-      //     className: 'image-margin-left',
-      //     modelElements: [ 'imageInline' ]
-      // }, {
-      //     name: 'margin-right',
-      //     icon: rightIcon,
-      //     title: 'Image on right margin',
-      //     className: 'image-margin-right',
-      //     modelElements: [ 'imageInline' ]
-      // },
-      // // Modifying icons and titles of the default inline and
-      // // block image styles to reflect its real appearance.
-      // {
-      //     name: 'inline',
-      //     icon: inlineIcon
-      // }, {
-      //     name: 'block',
-      //     title: 'Centered image',
-      //     icon: centerIcon
-      // } ]
+      options: [ {
+          name: 'side',
+          //icon: sideIcon,
+          title: 'Side image',
+          className: 'image-side',
+          modelElements: [ 'imageBlock' ]
+      }, {
+          name: 'margin-left',
+          //icon: leftIcon,
+          title: 'Image on left margin',
+          className: 'image-margin-left',
+          modelElements: [ 'imageInline' ]
+      }, {
+          name: 'margin-right',
+          //icon: rightIcon,
+          title: 'Image on right margin',
+          className: 'image-margin-right',
+          modelElements: [ 'imageInline' ]
+      },
+      // Modifying icons and titles of the default inline and
+      // block image styles to reflect its real appearance.
+      {
+          name: 'inline',
+          //icon: inlineIcon
+      }, {
+          name: 'block',
+          title: 'Centered image',
+          //icon: centerIcon
+      } ]
     },
     toolbar: ["imageTextAlternative", "|", "imageStyle", "resizeImage"],
   },
+  table: {
+			contentToolbar: [
+				'tableColumn', 'tableRow', 'mergeTableCells',
+				'tableProperties', 'tableCellProperties'
+			],
+
+			tableProperties: {
+				// The configuration of the TableProperties plugin.
+			},
+
+			tableCellProperties: {
+				// The configuration of the TableCellProperties plugin.
+			}
+		}
 };
 
 // class XMInlineEditor extends InlineEditor {}

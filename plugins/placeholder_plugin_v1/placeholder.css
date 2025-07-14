@@ -1,20 +1,3 @@
-.ck-placeholder-list .ck-button {
-    width: 100%;
-    background: transparent;
-    border: none;
-    text-align: left;
-    padding: var(--ck-spacing-small);
-}
-
-.ck-placeholder-list .ck-button:hover {
-    background: var(--ck-color-base-active);
-}
-
-.ck-placeholder-list .ck-button.ck-disabled {
-    color: var(--ck-color-base-foreground-disabled);
-    cursor: not-allowed;
-}
-
 .ck.ck-list {
     width: 345px;
     flex-wrap: wrap;
@@ -24,6 +7,21 @@
     justify-content: space-between;
 }
 
-.xm-ck.ck.ck-list__item {
+.xm-ck.ck-list__item .ck-button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 6px 12px;
+}
+
+
+.xm-ck.ck-list__item .ck-button.ck-disabled {
+    color: var(--ck-color-base-foreground-disabled);
+    cursor: not-allowed;
+}
+
+
+.xm-ck.ck-list__item {
     flex-basis: 49%;
 }

@@ -50,11 +50,11 @@ export default class PlaceholderUIV1 extends Plugin {
     });
 
     // Create list items for each placeholder type
-    const items = placeholders.map((type) => {
+    const items = placeholders.map((placeholder) => {
       const listItem = new ListItemView(this.editor.locale);
       const buttonView = new ButtonView(this.editor.locale);
       buttonView.set({
-        label: type.text,
+        label: placeholder.text,
         withText: true,
         class: [xplaceholder.AUTHOR_CLASS, "ck-button__label"].join(' '),
       });
@@ -66,13 +66,13 @@ export default class PlaceholderUIV1 extends Plugin {
         children: [buttonView],
       });
       listItem.set({
-        label: type.text,
+        label: placeholder.text,
         withText: true,
       });
 
       // Execute the placeholder command and hide the panel on click
       buttonView.on("execute", () => {
-        this.editor.execute(xplaceholder.CMD_NAME, { value: type.value });
+        this.editor.execute(xplaceholder.CMD_NAME, placeholder);
         this.editor.editing.view.focus();
         // Hide the panel
         // const panelView = listView.element.closest('.ck-placeholder-panel');
